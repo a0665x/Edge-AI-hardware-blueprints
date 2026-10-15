@@ -1,0 +1,1316 @@
+{
+  "people": [
+    {
+      "chapter": 3,
+      "anchor": "guide-people",
+      "zh": "人流與越線：情境與切分",
+      "en": "People flow and line crossing: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-yolo",
+      "zh": "YOLO + 物件追蹤：技術路徑",
+      "en": "YOLO + object tracking: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-people",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "inspection": [
+    {
+      "chapter": 3,
+      "anchor": "guide-inspection",
+      "zh": "定點外觀檢查：情境與切分",
+      "en": "Stationary visual inspection: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-yolo",
+      "zh": "YOLO + 物件追蹤：技術路徑",
+      "en": "YOLO + object tracking: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-inspection",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "document": [
+    {
+      "chapter": 3,
+      "anchor": "guide-document",
+      "zh": "文件與儀表：情境與切分",
+      "en": "Documents and gauges: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-ocr",
+      "zh": "OCR：技術路徑",
+      "en": "OCR: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-document",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "points": [
+    {
+      "chapter": 3,
+      "anchor": "guide-points",
+      "zh": "表面特徵點追蹤：情境與切分",
+      "en": "Surface point tracking: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-tapir",
+      "zh": "TAPIR / TAPNet：技術路徑",
+      "en": "TAPIR / TAPNet: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-points",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "depthscene": [
+    {
+      "chapter": 3,
+      "anchor": "guide-depthscene",
+      "zh": "空間與距離：情境與切分",
+      "en": "Space and distance: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-depth",
+      "zh": "Depth Anything：技術路徑",
+      "en": "Depth Anything: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-depthscene",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "maskscene": [
+    {
+      "chapter": 3,
+      "anchor": "guide-maskscene",
+      "zh": "影片物件遮罩：情境與切分",
+      "en": "Video object masks: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-sam",
+      "zh": "SAM 2：技術路徑",
+      "en": "SAM 2: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-maskscene",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "semantic": [
+    {
+      "chapter": 3,
+      "anchor": "guide-semantic",
+      "zh": "事件語意判讀：情境與切分",
+      "en": "Event semantic review: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-yolo",
+      "zh": "YOLO + 物件追蹤：技術路徑",
+      "en": "YOLO + object tracking: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-vlm",
+      "zh": "VLM 分類器：技術路徑",
+      "en": "VLM classifier: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-semantic",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "yolo": [
+    {
+      "chapter": 5,
+      "anchor": "guide-yolo",
+      "zh": "YOLO + 物件追蹤：情境與切分",
+      "en": "YOLO + object tracking: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-yolo",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "ocr": [
+    {
+      "chapter": 5,
+      "anchor": "guide-ocr",
+      "zh": "OCR：情境與切分",
+      "en": "OCR: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-ocr",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "tapir": [
+    {
+      "chapter": 5,
+      "anchor": "guide-tapir",
+      "zh": "TAPIR / TAPNet：情境與切分",
+      "en": "TAPIR / TAPNet: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-tapir",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 7,
+      "anchor": "camera-geometry",
+      "zh": "遠距與移動取像",
+      "en": "Long-range and moving-camera acquisition",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "cotracker": [
+    {
+      "chapter": 5,
+      "anchor": "guide-cotracker",
+      "zh": "CoTracker：情境與切分",
+      "en": "CoTracker: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-cotracker",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 7,
+      "anchor": "camera-geometry",
+      "zh": "遠距與移動取像",
+      "en": "Long-range and moving-camera acquisition",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "sam": [
+    {
+      "chapter": 5,
+      "anchor": "guide-sam",
+      "zh": "SAM 2：情境與切分",
+      "en": "SAM 2: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-sam",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "depth": [
+    {
+      "chapter": 6,
+      "anchor": "guide-depth",
+      "zh": "Depth Anything：情境與切分",
+      "en": "Depth Anything: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-depth",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "vlm": [
+    {
+      "chapter": 6,
+      "anchor": "guide-vlm",
+      "zh": "VLM 分類器：情境與切分",
+      "en": "VLM classifier: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-vlm",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "jev": [
+    {
+      "chapter": 6,
+      "anchor": "guide-jev",
+      "zh": "Jev / RLCD Qwen 決策：情境與切分",
+      "en": "Jev / RLCD Qwen decision: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-jev",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 12,
+      "anchor": "jev-local-cloud",
+      "zh": "Jev 名詞與部署校正",
+      "en": "Jev terminology and deployment correction",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "realtime": [
+    {
+      "chapter": 9,
+      "anchor": "guide-realtime",
+      "zh": "持續即時：情境與切分",
+      "en": "Continuous real time: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "batch": [
+    {
+      "chapter": 1,
+      "anchor": "guide-batch",
+      "zh": "離線批次：情境與切分",
+      "en": "Offline batch: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "private": [
+    {
+      "chapter": 10,
+      "anchor": "guide-private",
+      "zh": "完全離線：情境與切分",
+      "en": "Fully offline: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "power": [
+    {
+      "chapter": 10,
+      "anchor": "guide-power",
+      "zh": "整機功耗上限：情境與切分",
+      "en": "System power cap: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 10,
+      "anchor": "procurement-bands",
+      "zh": "模組廠採購分級",
+      "en": "Module procurement bands",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "camera": [
+    {
+      "chapter": 7,
+      "anchor": "guide-camera",
+      "zh": "相機與動作：情境與切分",
+      "en": "Camera and motion: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 7,
+      "anchor": "camera-geometry",
+      "zh": "遠距與移動取像",
+      "en": "Long-range and moving-camera acquisition",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "multi": [
+    {
+      "chapter": 9,
+      "anchor": "guide-multi",
+      "zh": "多路相機：情境與切分",
+      "en": "Multiple cameras: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "fanless": [
+    {
+      "chapter": 11,
+      "anchor": "guide-fanless",
+      "zh": "無風扇：情境與切分",
+      "en": "Fanless enclosure: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 10,
+      "anchor": "procurement-bands",
+      "zh": "模組廠採購分級",
+      "en": "Module procurement bands",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "memory": [
+    {
+      "chapter": 9,
+      "anchor": "guide-memory",
+      "zh": "RAM 限制：情境與切分",
+      "en": "Physical RAM cap: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "latency": [
+    {
+      "chapter": 11,
+      "anchor": "guide-latency",
+      "zh": "反應時間：情境與切分",
+      "en": "Response deadline: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "obstacle": [
+    {
+      "chapter": 3,
+      "anchor": "guide-obstacle",
+      "zh": "移動機器人避障：情境與切分",
+      "en": "Robot obstacle avoidance: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-stereo",
+      "zh": "Stereo / ToF 深度：技術路徑",
+      "en": "Stereo / ToF depth: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-obstacle",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "gimbaltrack": [
+    {
+      "chapter": 3,
+      "anchor": "guide-gimbaltrack",
+      "zh": "雲台／移動相機追蹤：情境與切分",
+      "en": "Gimbal and moving-camera tracking: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-tapir",
+      "zh": "TAPIR / TAPNet：技術路徑",
+      "en": "TAPIR / TAPNet: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-stabilize",
+      "zh": "運動補償／IMU 融合：技術路徑",
+      "en": "Motion compensation / IMU fusion: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-gimbaltrack",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "voiceagent": [
+    {
+      "chapter": 3,
+      "anchor": "guide-voiceagent",
+      "zh": "本地語音 Agent：情境與切分",
+      "en": "Voice agent: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-llm",
+      "zh": "本地 LLM / Strata：技術路徑",
+      "en": "LLM / Strata: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-asr",
+      "zh": "串流 ASR + VAD：技術路徑",
+      "en": "Streaming ASR + VAD: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-voiceagent",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "ragagent": [
+    {
+      "chapter": 3,
+      "anchor": "guide-ragagent",
+      "zh": "文件知識／工具 Agent：情境與切分",
+      "en": "Knowledge and tool agent: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-llm",
+      "zh": "本地 LLM / Strata：技術路徑",
+      "en": "LLM / Strata: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-rag",
+      "zh": "本地 RAG / Tool calling：技術路徑",
+      "en": "RAG / tool calling: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-ragagent",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "checkout": [
+    {
+      "chapter": 3,
+      "anchor": "guide-checkout",
+      "zh": "結帳／訂單核對：情境與切分",
+      "en": "Checkout and order verification: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-yolo",
+      "zh": "YOLO + 物件追蹤：技術路徑",
+      "en": "YOLO + object tracking: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-ocr",
+      "zh": "OCR：技術路徑",
+      "en": "OCR: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-checkout",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "security": [
+    {
+      "chapter": 3,
+      "anchor": "guide-security",
+      "zh": "智慧安防攝影機：情境與切分",
+      "en": "Smart security camera: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-yolo",
+      "zh": "YOLO + 物件追蹤：技術路徑",
+      "en": "YOLO + object tracking: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-security",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "pose": [
+    {
+      "chapter": 3,
+      "anchor": "guide-pose",
+      "zh": "姿態／動作分析：情境與切分",
+      "en": "Pose and action analysis: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-posemodel",
+      "zh": "Pose / Action 模型：技術路徑",
+      "en": "Pose / action model: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-pose",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "stereo": [
+    {
+      "chapter": 6,
+      "anchor": "guide-stereo",
+      "zh": "Stereo / ToF 深度：情境與切分",
+      "en": "Stereo / ToF depth: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-stereo",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "stabilize": [
+    {
+      "chapter": 5,
+      "anchor": "guide-stabilize",
+      "zh": "運動補償／IMU 融合：情境與切分",
+      "en": "Motion compensation / IMU fusion: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-stabilize",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 7,
+      "anchor": "camera-geometry",
+      "zh": "遠距與移動取像",
+      "en": "Long-range and moving-camera acquisition",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "llm": [
+    {
+      "chapter": 6,
+      "anchor": "guide-llm",
+      "zh": "本地 LLM / Strata：情境與切分",
+      "en": "LLM / Strata: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-llm",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "asr": [
+    {
+      "chapter": 5,
+      "anchor": "guide-asr",
+      "zh": "串流 ASR + VAD：情境與切分",
+      "en": "Streaming ASR + VAD: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-asr",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "tts": [
+    {
+      "chapter": 5,
+      "anchor": "guide-tts",
+      "zh": "串流 TTS + AEC：情境與切分",
+      "en": "Streaming TTS + AEC: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-tts",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "rag": [
+    {
+      "chapter": 5,
+      "anchor": "guide-rag",
+      "zh": "本地 RAG / Tool calling：情境與切分",
+      "en": "RAG / tool calling: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-rag",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "posemodel": [
+    {
+      "chapter": 5,
+      "anchor": "guide-posemodel",
+      "zh": "Pose / Action 模型：情境與切分",
+      "en": "Pose / action model: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-posemodel",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "optics": [
+    {
+      "chapter": 7,
+      "anchor": "guide-optics",
+      "zh": "FOV 與目標占比：情境與切分",
+      "en": "FOV and target footprint: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 7,
+      "anchor": "camera-geometry",
+      "zh": "遠距與移動取像",
+      "en": "Long-range and moving-camera acquisition",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "motion": [
+    {
+      "chapter": 7,
+      "anchor": "guide-motion",
+      "zh": "機身／雲台晃動：情境與切分",
+      "en": "Body and gimbal vibration: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 7,
+      "anchor": "camera-geometry",
+      "zh": "遠距與移動取像",
+      "en": "Long-range and moving-camera acquisition",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "metric": [
+    {
+      "chapter": 6,
+      "anchor": "guide-metric",
+      "zh": "距離分段誤差：情境與切分",
+      "en": "Distance-dependent error: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "stopping": [
+    {
+      "chapter": 11,
+      "anchor": "guide-stopping",
+      "zh": "移動速度與煞停：情境與切分",
+      "en": "Speed and stopping envelope: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "audio": [
+    {
+      "chapter": 7,
+      "anchor": "guide-audio",
+      "zh": "語音回應與聲學：情境與切分",
+      "en": "Voice response and acoustics: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "localstack": [
+    {
+      "chapter": 8,
+      "anchor": "guide-localstack",
+      "zh": "本地模型與部署框架：情境與切分",
+      "en": "Model and deployment framework: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "lighting": [
+    {
+      "chapter": 11,
+      "anchor": "guide-lighting",
+      "zh": "照明／反光／遮擋：情境與切分",
+      "en": "Lighting, glare and occlusion: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "sensorio": [
+    {
+      "chapter": 10,
+      "anchor": "guide-sensorio",
+      "zh": "感測器與資料同步：情境與切分",
+      "en": "Sensor I/O and synchronization: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "uavtrack": [
+    {
+      "chapter": 3,
+      "anchor": "guide-uavtrack",
+      "zh": "無人機遠距追蹤：情境與切分",
+      "en": "Drone long-range tracking: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-tapir",
+      "zh": "TAPIR / TAPNet：技術路徑",
+      "en": "TAPIR / TAPNet: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-stabilize",
+      "zh": "運動補償／IMU 融合：技術路徑",
+      "en": "Motion compensation / IMU fusion: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-uavtrack",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "uavmap": [
+    {
+      "chapter": 3,
+      "anchor": "guide-uavmap",
+      "zh": "無人機空拍建圖：情境與切分",
+      "en": "Drone aerial mapping: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-slam",
+      "zh": "SLAM / VIO / GNSS 融合：技術路徑",
+      "en": "SLAM / VIO / GNSS fusion: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-depth",
+      "zh": "Depth Anything：技術路徑",
+      "en": "Depth Anything: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-uavmap",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "uavavoid": [
+    {
+      "chapter": 3,
+      "anchor": "guide-uavavoid",
+      "zh": "無人機飛行避障：情境與切分",
+      "en": "Drone flight obstacle avoidance: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-stereo",
+      "zh": "Stereo / ToF 深度：技術路徑",
+      "en": "Stereo / ToF depth: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-stabilize",
+      "zh": "運動補償／IMU 融合：技術路徑",
+      "en": "Motion compensation / IMU fusion: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-uavavoid",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "mobilerobot": [
+    {
+      "chapter": 3,
+      "anchor": "guide-mobilerobot",
+      "zh": "移動機器人空間感知：情境與切分",
+      "en": "Mobile robot spatial perception: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-slam",
+      "zh": "SLAM / VIO / GNSS 融合：技術路徑",
+      "en": "SLAM / VIO / GNSS fusion: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-depth",
+      "zh": "Depth Anything：技術路徑",
+      "en": "Depth Anything: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-mobilerobot",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "vehicle": [
+    {
+      "chapter": 3,
+      "anchor": "guide-vehicle",
+      "zh": "車載遠距觀測：情境與切分",
+      "en": "Vehicle long-range observation: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-yolo",
+      "zh": "YOLO + 物件追蹤：技術路徑",
+      "en": "YOLO + object tracking: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-depth",
+      "zh": "Depth Anything：技術路徑",
+      "en": "Depth Anything: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-vehicle",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "slam": [
+    {
+      "chapter": 5,
+      "anchor": "guide-slam",
+      "zh": "SLAM / VIO / GNSS 融合：情境與切分",
+      "en": "SLAM / VIO / GNSS fusion: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-slam",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "joint-resources",
+      "zh": "並存模型資源池",
+      "en": "Concurrent model resource pool",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "longrange": [
+    {
+      "chapter": 7,
+      "anchor": "guide-longrange",
+      "zh": "遠距離與長焦取像：情境與切分",
+      "en": "Long-range and telephoto imaging: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 7,
+      "anchor": "camera-geometry",
+      "zh": "遠距與移動取像",
+      "en": "Long-range and moving-camera acquisition",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ]
+}

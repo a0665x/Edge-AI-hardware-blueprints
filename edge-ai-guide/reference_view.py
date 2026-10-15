@@ -1,0 +1,44 @@
+"""Compact bilingual reference views; shared anchors with the selection workbench."""
+from bs4 import BeautifulSoup
+from html import escape as E
+summaries=[
+('先確認要得到什麼結果，再選裝置。','Define the output before choosing a device.','輸出結果｜精度門檻｜失敗處置','Output | Quality target | Failure handling'),
+('每個條件都是一道選型關卡。','Each requirement is a device-selection gate.','場景 → 算法 → 相容性 → 資源 → 實測','Scenario → Algorithm → Compatibility → Resources → Test'),
+('挑相近場景，確認真正影響選型的限制。','Choose a nearby scenario and inspect its constraints.','相機與距離｜即時性｜輸出精度','Camera and distance | Timing | Output quality'),
+('從需要的輸出，找到最小可行技術組合。','Match the required output to a minimal pipeline.','框：偵測｜軌跡：追蹤｜輪廓：分割','Boxes: detection | Paths: tracking | Masks: segmentation'),
+('先固定模型版本與輸入，再比較效能。','Fix the model and input before comparing performance.','模型版本｜輸入尺寸｜時間狀態','Checkpoint | Input size | Temporal state'),
+('深度色彩不等於公尺；決策模型也需要部署資源。','Depth colors are not metres; decision models need deployment resources.','相對／公尺深度｜本地／雲端決策','Relative / metric depth | Local / cloud decisions'),
+('相機 FPS、模型 FPS、回應延遲是不同指標。','Camera FPS, model FPS and response latency differ.','取像 → 前處理 → 推論 → 輸出','Capture → Preprocess → Infer → Output'),
+('能匯出模型，不代表裝置能完整加速。','Model export does not guarantee full device acceleration.','版本固定 → 編譯 → 查 CPU 回退 → 全管線量測','Pin versions → Compile → Check CPU fallback → Measure'),
+('多個模型同時執行，要合計容量與負載。','Concurrent models share memory and compute capacity.','權重｜每路狀態｜峰值記憶體｜延遲','Weights | Per-stream state | Peak memory | Latency'),
+('先排除不符合需求的裝置，再比較採購級距。','Reject unsuitable devices before comparing procurement bands.','相容性｜容量｜接口／功耗｜低・中・高價','Compatibility | Capacity | I/O and power | Low / Medium / High'),
+('用真實資料與完整管線，證明這台裝置能完成任務。','Use real data and the full pipeline to verify the device.','定標準 → 真機測試 → 查失效 → 決定下一步','Set targets → Test hardware → Check failures → Decide'),
+('先對齊名詞，避免把不同能力當成同一件事。','Align terminology before comparing capabilities.','深度≠距離｜TOPS≠FPS｜候選≠驗證通過','Depth ≠ distance | TOPS ≠ FPS | Candidate ≠ validated'),
+('技術能力查官方文件，產品表現用真機驗證。','Check official documentation for capability; test product performance.','模型專案｜Runtime 文件｜平台規格','Model projects | Runtime docs | Platform specifications')]
+CSS='''body{margin:0;background:#f7f8f2;color:#173d35;font:15px/1.65 system-ui,sans-serif}*{box-sizing:border-box}a{color:#006b57}header{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #d7e0d5;display:flex;justify-content:space-between;align-items:center;padding:14px 28px}header select{padding:9px;border:1px solid #bdcbbd;border-radius:6px;background:white}nav{position:fixed;top:75px;bottom:0;overflow:auto;width:240px;padding:20px}nav a{display:block;padding:9px 12px;text-decoration:none;border-radius:7px;font-size:13px}nav a[aria-current=true]{background:#173d35;color:white}main{margin-left:260px;max-width:1200px;padding:32px}section{scroll-margin-top:90px}section[hidden]{display:none}h1{font-size:30px;line-height:1.3;margin:4px 0 12px}h2{font-size:19px}p{margin:8px 0;color:#53685e}.flow{display:flex;flex-wrap:wrap;gap:8px;margin:24px 0}.flow span{padding:12px 16px;background:#e8efdf;border:1px solid #cfdbc9;border-radius:8px}.flow i{align-self:center;color:#6c8174;font-style:normal}.metrics,.case-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.metrics{grid-template-columns:repeat(3,minmax(0,1fr));margin:24px 0}.metric{padding:18px;background:white;border:1px solid #d7e0d5;border-radius:10px}.metric b{display:block;margin-bottom:8px}.context-article{background:white;border:1px solid #d7e0d5;padding:14px 16px;border-radius:9px;scroll-margin-top:90px;align-self:start}.context-article:target{border:2px solid #087e68}.context-article summary{cursor:pointer;min-height:44px;align-content:center;font-weight:650}.context-article p{font-size:13px}.context-article[open]{grid-column:1/-1}.note{padding:14px;border-left:3px solid #a97626;background:#fff5df;font-size:13px}.sources a{display:block;overflow-wrap:anywhere;padding:8px}.search{width:100%;min-height:44px;margin:12px 0 20px;padding:10px;border:1px solid #bdcbbd;border-radius:7px}button:focus-visible,a:focus-visible,summary:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #ad7020;outline-offset:2px}@media(max-width:800px){nav{position:static;width:auto;display:flex;overflow:auto;padding:12px;gap:6px}nav a{white-space:nowrap}main{margin:0;padding:20px}.metrics,.case-grid{grid-template-columns:1fr}header{padding:12px}.context-article[open]{grid-column:auto}}'''
+SCRIPT='''const language=document.getElementById('reference-language');language.addEventListener('change',()=>{location.href=(language.value==='en'?'reference-en.html':'reference.html')+(location.hash||'#principles');});function navigate(){const id=decodeURIComponent(location.hash.slice(1)||'principles'),target=document.getElementById(id),section=target?.closest('section')||document.querySelector('section');document.querySelectorAll('main>section').forEach(s=>s.hidden=s!==section);document.querySelectorAll('nav a').forEach(a=>a.setAttribute('aria-current',a.hash==='#'+section.id));if(target?.matches('details')){target.hidden=false;target.open=true;target.scrollIntoView({block:'start'});}else window.scrollTo(0,0);}window.addEventListener('hashchange',navigate);window.addEventListener('load',()=>setTimeout(navigate,50));document.querySelectorAll('.search').forEach(input=>input.addEventListener('input',()=>{input.closest('section').querySelectorAll('.context-article').forEach(d=>d.hidden=!d.textContent.toLowerCase().includes(input.value.toLowerCase()));}));navigate();'''
+def write_views(root,chapters,articles,articles_en,links):
+ for en,file in [(False,'reference.html'),(True,'reference-en.html')]:
+  L=lambda z,e:e if en else z
+  nav='';sections=''
+  for i,(key,zh,eng) in enumerate(chapters):
+   if key=='revision':zh,eng='名詞釐清','Terminology'
+   title=L(zh,eng);nav+=f'<a href="#{key}">{E(title)}</a>'
+   intro=summaries[i];flow=L(intro[2],intro[3]).replace('｜','|');parts=flow.split(' → ') if ' → ' in flow else flow.split('|')
+   flowhtml='<div class="flow">'+('<i>→</i>'.join(f'<span>{E(p.strip())}</span>' for p in parts))+'</div>'
+   body=''
+   if key=='validation':
+    metrics=[('結果正確嗎？','Is the output correct?','精度、漏判、距離誤差；按場景選指標。','Accuracy, misses, distance error: choose scenario-specific metrics.'),('來得及嗎？','Is it fast enough?','看端到端 P95 與掉幀，不只平均 FPS。','Check end-to-end P95 and drops, not just average FPS.'),('撐得住嗎？','Can it sustain the load?','多模型一起跑，量峰值 RAM、功耗與熱穩態。','Run models together; measure peak RAM, power and thermal stability.')]
+    body='<div class="metrics">'+''.join(f'<div class="metric"><b>{E(L(a,b))}</b><p>{E(L(c,d))}</p></div>' for a,b,c,d in metrics)+'</div><p class="note">'+L('通過 → 試作；未達標 → 調整模型／相機／裝置後重測。測試前先約定門檻，不把示例數字當保證。','Pass → prototype. Fail → adjust model, camera or device and retest. Agree targets first; example numbers are not guarantees.')+'</p>'
+   fragments=(articles_en if en else articles)[key]
+   if fragments:
+    body+=f'<h2>{L("按情境查看重點","Explore by scenario")}</h2><input class="search" aria-label="{L("搜尋本章","Search this chapter")}" placeholder="{L("搜尋情境或技術…","Find a scenario or technique…")}"><div class="case-grid">'
+    for frag in fragments:
+     soup=BeautifulSoup(frag,'html.parser');a=soup.select_one('article');heading=a.find('h3');name=heading.get_text();heading.decompose()
+     body+=f'<details class="context-article" id="{E(a["id"])}"><summary>{E(name)}</summary>{a.decode_contents()}</details>'
+    body+='</div>'
+   if key=='sources':body+='<div class="sources">'+''.join(f'<a href="{E(url)}" target="_blank" rel="noopener">{E(url.split("//")[-1])} ↗</a>' for url in sorted(links))+'</div>'
+   if key=='revision':body+='<div class="metrics">'+''.join(f'<div class="metric"><b>{a}</b><p>{b}</p></div>' for a,b in [('DAC',L('此工具指 Depth Anything 系列。相對深度不能直接當作公尺。','Depth Anything family here. Relative depth is not a metric distance.')),('Jev',L('此工具指 RLCD + Qwen 決策模型，可選本地或雲端部署。','RLCD + Qwen decision model here, with local or cloud deployment.'))])+'</div>'
+   sections+=f'<section id="{key}"><h1>{E(title)}</h1><p>{E(L(intro[0],intro[1]))}</p>{flowhtml}{body}</section>'
+  page=f'<!doctype html><html lang="{"en" if en else "zh-Hant"}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{L("Edge AI 應用指南","Edge AI application guide")}</title><style>{CSS}</style></head><body><header><a href="index.html?lang={"en" if en else "zh"}">← {L("應用裝置選型","Application & device selection")}</a><label>{L("語言","Language")} <select id="reference-language"><option value="zh" {"" if en else "selected"}>繁體中文</option><option value="en" {"selected" if en else ""}>English</option></select></label></header><nav>{nav}</nav><main>{sections}</main><script>{SCRIPT}</script></body></html>'
+  (root/file).write_text(page)

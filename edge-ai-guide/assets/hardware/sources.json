@@ -1,0 +1,68 @@
+[
+  {
+    "id": "nano",
+    "url": "https://www.nvidia.com/content/nvidiaGDC/us/en_US/autonomous-machines/embedded-systems/jetson-orin/_jcr_content/root/responsivegrid/nv_container_copy_1594721673/nv_container/nv_teaser_copy_1995786452.coreimg.jpeg/1787666716572/nvidia-jetson-orin-nano-3c33-d-2x.jpeg",
+    "page": "https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/",
+    "caption": "Jetson Orin Nano Series 官方模組產品圖"
+  },
+  {
+    "id": "nx",
+    "url": "https://www.nvidia.com/content/nvidiaGDC/us/en_US/autonomous-machines/embedded-systems/jetson-orin/_jcr_content/root/responsivegrid/nv_container_copy_1594721673/nv_container/nv_teaser_copy.coreimg.jpeg/1787666716561/nvidia-jetson-orin-nx-3c33-d-2x.jpeg",
+    "page": "https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/",
+    "caption": "Jetson Orin NX Series 官方模組產品圖"
+  },
+  {
+    "id": "agx",
+    "url": "https://www.nvidia.com/content/nvidiaGDC/us/en_US/autonomous-machines/embedded-systems/jetson-orin/_jcr_content/root/responsivegrid/nv_container_copy_1594721673/nv_container/nv_teaser.coreimg.jpeg/1787666716551/nvidia-jetson-agx-orin-3c33-d-2x.jpeg",
+    "page": "https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/",
+    "caption": "Jetson AGX Orin Series 官方模組產品圖"
+  },
+  {
+    "id": "thor",
+    "url": "https://www.nvidia.com/content/nvidiaGDC/us/en_US/autonomous-machines/embedded-systems/jetson-thor/_jcr_content/root/responsivegrid/nv_container_copy/nv_container_1143095/nv_container_852351204/nv_image.coreimg.jpeg/1784156864542/jetson-thor-highlights-ari-1920x1080.jpeg",
+    "page": "https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-thor/",
+    "caption": "Jetson T5000 官方產品拆解圖"
+  },
+  {
+    "id": "intel",
+    "url": "https://www.intel.com/content/dam/www/central-libraries/us/en/images/2024-10/newsroom-intel-arl-chip-8.jpg",
+    "page": "https://www.intel.com/content/www/us/en/newsroom/resources/press-kit-core-ultra-series-2.html",
+    "caption": "Core Ultra Series 2 官方處理器圖；配置需另確認"
+  },
+  {
+    "id": "kl",
+    "url": "https://www.kneron.com/_upload/custom/31764db3dd4d9370.png",
+    "page": "https://www.kneron.com/en/news/blog/178/",
+    "caption": "KL730 官方封裝產品圖"
+  },
+  {
+    "id": "cv72",
+    "url": "https://www.ambarella.com/wp-content/uploads/CV72S-300x275.png",
+    "page": "https://www.ambarella.com/products/security/",
+    "caption": "CV72S 官方封裝產品圖"
+  },
+  {
+    "id": "qcs",
+    "url": "https://cdn.lantronix.com/wp-content/uploads/img/6490-SMARC-on-Carrier-scaled.webp",
+    "page": "https://www.lantronix.com/products/open-q-6490cs-smarc-som-development-kit/",
+    "caption": "Lantronix 官方 QCS6490 SMARC 載板／模組實物圖"
+  },
+  {
+    "id": "rtx",
+    "url": "https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/graphic-cards/50-series/5070-family/geforce-rtx-5070-ti-og-image.jpg",
+    "page": "https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/rtx-5070-family/",
+    "caption": "NVIDIA 官方 RTX 5070 產品圖；x86 主機另選"
+  },
+  {
+    "id": "strix",
+    "url": "https://images.frame.work/frameworkmarketplace/Z9GrZBsAHJWomc-s_Framework-Desktop-Deep-Dive-Ryzen-AI-Max.jpg?fm=jpg",
+    "page": "https://frame.work/blog/framework-desktop-deep-dive-ryzen-ai-max",
+    "caption": "Framework 官方 Ryzen AI Max 晶片產品圖；本候選 128GB 配置另確認"
+  },
+  {
+    "id": "qcs8550",
+    "url": "https://cdn.lantronix.com/wp-content/uploads/img/IMG_0029_version_2_8550_cropped.png",
+    "page": "https://www.lantronix.com/products/open-q-8550cs-som/",
+    "caption": "Lantronix 官方 QCS8550 SoM 實物圖；16GB 配置按料號確認"
+  }
+]

@@ -1,0 +1,70 @@
+/* Product delivery model. Availability is organization structure, never a task filter. */
+const ProductWorkflow=(()=>{
+ const roles=[
+ ['pm','PM / 產品管理','PM / Product','#7959a4','需求邊界、KPI、風險與跨部門協調。','Scope, KPIs, risks and cross-team coordination.'],
+ ['hw','硬體 / EE / ME','Hardware / EE / ME','#3f79b2','電路、機構、電源、散熱、BOM 與打樣。','Electronics, mechanics, power, thermals, BOM and prototypes.'],
+ ['fw','FW · 韌體 / BSP','FW · Firmware / BSP','#278c9c','開機、驅動、感測器、時間同步與底層控制。','Boot, drivers, sensors, synchronization and low-level control.'],
+ ['sw','Edge AI / 軟體','Edge AI / Software','#087e68','模型部署、效能、系統接口、應用邏輯與更新。','Model deployment, performance, interfaces, application logic and updates.'],
+ ['app','App / UX','App / UX','#a16d16','使用流程、操作介面、安裝配對與首次使用體驗。','User flows, interfaces, installation, pairing and first-run experience.'],
+ ['cloud','Cloud / SRE','Cloud / SRE','#b2623f','雲端服務、裝置管理、監控、API 與服務可靠度。','Services, device fleet, monitoring, APIs and service reliability.'],
+ ['qa','QA / 驗證','QA / Validation','#66802c','測試策略、獨立複核、整機驗證、缺陷追蹤與驗收證據。','Test strategy, independent review, system validation, defects and acceptance evidence.'],
+ ['mfg','MFG · 製造 / NPI','MFG · Manufacturing / NPI','#b05876','可製造性、治具、ATE、校準、試產良率與追溯。','Manufacturability, fixtures, ATE, calibration, pilot yield and traceability.'],
+ ['data','Data / MLOps','Data / MLOps','#4076a0','資料標註、版本、評測、模型發布及現場資料閉環。','Labeling, dataset versions, evaluation, model releases and field feedback.'],
+ ['security','SECURITY · 資安 / 法規','SECURITY · Security / Compliance','#97683b','權限、隱私、威脅模型、認證範圍與法規證據。','Permissions, privacy, threat models, certification scope and compliance evidence.'],
+ ['exec','決策者 / 產品負責人','Sponsor / Product owner','#394e55','保留公司內部最終責任；委外執行不轉移放行責任。','Retains internal accountability; outsourcing execution does not transfer release accountability.']
+ ].map(([id,zh,en,color,tipZh,tipEn])=>({id,zh,en,color,tipZh,tipEn}));
+ const phases=[
+ ['scope','需求與選型交接','Scope & selection',[], '確認情境、驗收門檻、候選裝置與尚未解決的限制。','Agree scenarios, acceptance targets, candidate device and unresolved limits.'],
+ ['design','系統設計','System design',['scope'],'確定硬體、軟體、資料與委外交付界面。','Define hardware, software, data and supplier handoff boundaries.'],
+ ['evt','EVT 工程驗證','EVT · Engineering',['design'],'打樣與軟體 bring-up 匯合，證明關鍵功能與部署可行。','Join prototypes and software bring-up; demonstrate critical functions and deployment feasibility.'],
+ ['dvt','DVT 設計驗證','DVT · Design',['evt'],'使用整機與代表性資料驗證精度、延遲、可靠度及資安。','Validate system accuracy, latency, reliability and security on representative data.'],
+ ['pvt','PVT 生產驗證','PVT · Production',['dvt'],'試產、治具與校準可重複；版本、BOM 與追溯一致。','Repeatable pilot production, fixtures and calibration; consistent versions, BOM and traceability.'],
+ ['oob','OOB 首次使用','OOB · First use',['dvt'],'首次開箱、配對、安裝及失敗復原由目標使用者驗收。','Target users validate first run, pairing, installation and recovery.'],
+ ['mp','MP 量產放行','MP · Release',['pvt','oob'],'生產與使用體驗兩路完成驗收，再進行量產放行。','Release after both production and first-use acceptance.'],
+ ['ops','營運與下一版','Operations & next cycle',['mp'],'監控、回滾與現場資料形成下一版需求；不直接跳過重新驗證。','Monitoring, rollback and field evidence feed the next version, with revalidation.']
+ ].map(([id,zh,en,deps,gateZh,gateEn])=>({id,zh,en,deps,gateZh,gateEn}));
+ const tasks=[];
+ function task(id,phase,zh,en,functions,consult,deliverZh,deliverEn,acceptZh,acceptEn,when='always'){
+ tasks.push({id,phase,zh,en,functions,consult,deliverZh,deliverEn,acceptZh,acceptEn,when});}
+ task('brief','scope','需求、KPI 與候選交接','Requirements, KPIs & candidate handoff',['pm'],['hw','sw','qa'],'需求基線、候選裝置、限制清單','Requirements baseline, device candidate, limits register','把規劃假設與已測證據分開；確認 FPS / P95、精度、功耗和採購等級。','Separate planning assumptions from measurements; agree FPS/P95, accuracy, power and procurement band.');
+ task('acceptance','scope','資料與驗收計畫','Data & acceptance plan',['qa','data'],['pm','sw'],'測試資料切分、驗收準則、失效樣本','Dataset split, acceptance criteria, failure samples','定義可重現測試資料、長尾情境與失敗處置。','Define reproducible data, long-tail cases and failure handling.');
+ task('hardware','design','硬體架構與打樣規格','Hardware architecture & prototype spec',['hw'],['fw','mfg','sw'],'BOM、載板、電源／熱、感測器規格','BOM, carrier, power/thermal and sensor specification','確認選定 SKU、RAM、接口、供電、散熱與樣機交期。','Confirm exact SKU, RAM, I/O, power, thermals and prototype lead time.');
+ task('interfaces','design','軟韌體接口與部署架構','Software/firmware & deployment architecture',['sw','fw'],['hw','qa'],'接口、SDK／driver／runtime 版本矩陣','Interfaces and SDK/driver/runtime version matrix','固定模型 checkpoint、輸出格式、時序、CPU fallback 與更新邊界。','Pin checkpoints, output schemas, timing, CPU fallbacks and update boundaries.');
+ task('threat','design','資安與法規適用範圍','Security & compliance scope',['security'],['pm','hw','sw'],'威脅模型、資料流、認證適用性','Threat model, data flow and certification applicability','確認權限、資料保留與實際產品／市場的認證需求。','Define access, retention and certification needs for the actual product and market.');
+ task('prototype','evt','硬體打樣與電源／熱基線','Prototype & power/thermal baseline',['hw'],['fw','mfg','qa'],'樣機、BOM 版號、量測與問題清單','Prototype, BOM revision, measurements and issues','上電與關鍵接口穩定；保留電源與熱量測條件。','Stable power-up and critical I/O; retain power/thermal measurement conditions.');
+ task('bringup','evt','BSP、驅動與感測器啟動','BSP, drivers & sensor bring-up',['fw'],['hw','sw'],'開機 image、驅動、同步量測','Boot image, drivers and synchronization measurements','確認相機／感測器輸入、時間戳、掉幀與錯誤復原。','Verify sensor input, timestamps, frame drops and error recovery.');
+ task('inference','evt','模型編譯與並存負載 PoC','Model compilation & concurrent-load PoC',['sw','data'],['fw','qa'],'可重建部署包、partition 與 profile','Reproducible package, partition report and profiles','所有選定技術一起測：峰值 RAM／VRAM、P95、FPS 與精度。','Test selected techniques together: peak RAM/VRAM, P95, FPS and accuracy.');
+ task('optics','evt','遠距／移動取像校準','Long-range / moving-camera calibration',['hw','fw'],['sw','qa'],'鏡頭、曝光、IMU／相機標定','Lens/exposure and IMU/camera calibration','實拍確認目標 px、FOV、模糊、快門、同步與運動補償殘差。','Measure target pixels, FOV, blur, shutter, sync and residual motion.', 'vision');
+ task('audio','evt','語音回路與對話延遲','Audio loop & dialogue latency',['sw','fw'],['app','qa'],'麥克風／AEC 測試與分段延遲','Microphone/AEC tests and stage latency','分開首音訊／完整回答；測噪音、VAD、ASR、prefill、工具和 TTS。','Separate first audio/full reply; test noise, VAD, ASR, prefill, tools and TTS.','speech');
+ task('cloudapi','evt','雲端 API／服務整合','Cloud API / service integration',['cloud','sw'],['security','qa'],'API 契約、監控、timeout 與離線策略','API contract, monitoring, timeout and offline policy','測網路中斷、P95、重試與資料政策；本地其他模型仍需同時運行。','Test outages, P95, retries and data policy while other local models run.','cloud');
+ task('systemtest','dvt','整機可靠度與壓力驗證','System reliability & stress validation',['qa'],['hw','fw','sw'],'整機長時間、熱／環境與壓測報告','System endurance, thermal/environment and stress reports','目標環溫與工作負載下，驗證功耗、熱穩態、重啟、耗盡與故障復原。','Validate power, thermal steady state, restart, exhaustion and recovery at target ambient/workload.');
+ task('aieval','dvt','AI 場域精度與效能驗收','Field AI quality & performance acceptance',['qa','data'],['sw','pm'],'保留測試集報告、精度／P95／掉幀','Held-out evaluation, quality/P95/drop-rate report','使用未參與調參的資料與實際場域條件，核對需求基線。','Use held-out data and field conditions against the agreed baseline.');
+ task('compliance','dvt','資安、隱私與認證證據','Security, privacy & compliance evidence',['security'],['hw','sw','qa'],'掃描／滲透／認證證據與整改','Security/compliance evidence and remediation','依適用範圍完成測試與整改；不將模板等同認證通過。','Complete applicable tests and remediation; a template is not certification.');
+ task('control','dvt','移動控制與失效處置驗證','Motion control & failure-mode validation',['fw','qa'],['hw','sw','security'],'煞停、失鎖、感測失效與復原報告','Stopping, tracking-loss, sensor-failure and recovery report','依產品控制與安全需求驗收；幾何試算不代替實體測試。','Validate actual control/safety requirements; geometry estimates do not replace physical tests.','mobile');
+ task('ate','pvt','治具、ATE 與校準 SOP','Fixtures, ATE & calibration SOP',['mfg','fw'],['hw','qa'],'治具、測試程式、校準與限值','Fixtures, test programs, calibration and limits','產測重複性、GR&R 適用性、失敗定位與維修流程可追溯。','Verify repeatable production tests, applicable GR&R, fault localization and repair traceability.');
+ task('pilot','pvt','試產與版本／BOM 鎖定','Pilot run & version/BOM lock',['mfg'],['hw','fw','sw','qa'],'試產良率、版號、序號與燒錄紀錄','Pilot yield, versions, serial numbers and provisioning records','確認目標良率、備料、軟硬體一致性與追溯資料。','Verify yield targets, supply, hardware/software consistency and traceability.');
+ task('firstuse','oob','安裝、配對與首次使用','Installation, pairing & first use',['app','qa'],['fw','sw'],'首次使用腳本、使用者錄影與缺陷','First-use scripts, user sessions and defects','目標使用者可完成開箱、權限、配對、更新和失敗復原。','Target users complete setup, permissions, pairing, updates and recovery.');
+ task('service','oob','交付文件與維修支援','Delivery documentation & service',['pm','app'],['mfg','qa'],'安裝／維修手冊、FAQ、支援交接','Installation/service guides, FAQ and support handoff','支援窗口、保固、維修與升級責任清楚。','Agree support contact, warranty, repairs and upgrade responsibilities.');
+ task('release','mp','量產放行與變更管制','Production release & change control',['pm','mfg'],['qa','hw','sw','security'],'PVT＋OOB 證據、簽核與量產基線','PVT/OOB evidence, sign-off and release baseline','兩路驗收完成；未解風險、供應與變更流程由公司負責人承認。','Both branches accepted; internal owner acknowledges residual risk, supply and change process.');
+ task('rollout','mp','版本發布與回滾演練','Release rollout & rollback drill',['sw'],['fw','qa','security'],'簽章版本、發布紀錄、回滾演練','Signed versions, release records and rollback drill','可重建版本、升級失敗復原和相容性矩陣驗證。','Verify reproducible versions, failed-upgrade recovery and compatibility matrix.');
+ task('field','ops','現場品質、維修與事件回收','Field quality, service & incident intake',['qa','pm'],['mfg','sw'],'故障分級、維修統計與追溯','Incident severity, service statistics and traceability','建立問題分流、責任窗口與關閉證據。','Define triage, accountable contacts and closure evidence.');
+ task('dataloop','ops','資料／模型閉環與下一版需求','Data/model loop & next-version scope',['data','sw'],['qa','security','pm'],'版本資料集、模型候選與回歸結果','Versioned datasets, model candidates and regression results','資料取得合規、標註一致；新模型回到需求／設計與回歸驗證。','Govern collection and labeling; new models return to scope/design and regression validation.');
+ const byRole=id=>roles.find(r=>r.id===id);
+ function createState(){return {schema:1,available:Object.fromEntries(roles.map(r=>[r.id,true])),routes:{},rolePolicy:{},accountable:Object.fromEntries(phases.map(p=>[p.id,'pm'])),progress:{},snapshot:null,extras:{vision:false,speech:false,cloud:false,mobile:false},selectedPhase:'evt'};}
+ function activeTasks(state){return tasks.filter(t=>t.when==='always'||state.extras[t.when]||state.snapshot?.flags?.[t.when]);}
+ function roleNeeded(state,id){return id==='exec'||Object.values(state.accountable).includes(id)||activeTasks(state).some(t=>t.functions.includes(id)||t.consult.includes(id)||[...t.functions,...t.consult].some(f=>!state.available[f]&&state.routes[f]?.mode==='merge'&&state.routes[f]?.owner===id));}
+ function applicabilityConflicts(state){return roles.filter(r=>state.rolePolicy?.[r.id]==='na'&&roleNeeded(state,r.id)).map(r=>r.id);}
+ function resolve(state,id){if(state.rolePolicy?.[id]==='na'&&roleNeeded(state,id))return {function:id,owner:'unassigned',mode:'unassigned',valid:false,conflict:true};if(state.available[id])return {function:id,owner:id,mode:'internal',valid:true};const route=state.routes[id]||{};
+ if(route.mode==='merge'&&route.owner!==id&&state.available[route.owner]&&byRole(route.owner))return {function:id,owner:route.owner,mode:'merge',valid:true};
+ if(route.mode==='si')return {function:id,owner:'si',mode:'si',partner:(route.partner||'').trim(),valid:!!(route.partner||'').trim()};
+ return {function:id,owner:'unassigned',mode:'unassigned',valid:false};}
+ function evaluate(state){const active=activeTasks(state);const rows=active.map(t=>{const assignments=t.functions.map(id=>resolve(state,id));const a=state.accountable[t.phase];const aValid=!!byRole(a)&&!!state.available[a]&&state.rolePolicy?.[a]!=='na';const progress=state.progress[t.id]||{};const evidence=(progress.evidence||'').trim();const declaredDone=progress.status==='done';return {...t,assignments,a:aValid?a:null,aRequested:a,missing:assignments.filter(x=>!x.valid),consultants:t.consult.map(id=>resolve(state,id)),informed:['exec'],status:progress.status||'planned',evidence,complete:declaredDone&&!!evidence&&aValid&&assignments.every(x=>x.valid)};});
+ const stageResults=[];for(const p of phases){const phaseRows=rows.filter(t=>t.phase===p.id);const ownershipGaps=phaseRows.filter(t=>t.missing.length||!t.a).length;const ready=phaseRows.every(t=>t.complete);const dependencies=p.deps.every(id=>stageResults.find(s=>s.id===id)?.passed);stageResults.push({...p,rows:phaseRows,ownershipGaps,done:phaseRows.filter(t=>t.complete).length,total:phaseRows.length,ready,passed:ready&&dependencies,dependencies});}
+ const qa=resolve(state,'qa'),devOwners=new Set(['hw','fw','sw'].map(id=>resolve(state,id)).filter(x=>x.valid).map(x=>x.owner==='si'?'si:'+x.partner:x.owner));const qaKey=qa.owner==='si'?'si:'+qa.partner:qa.owner;
+ return {applicabilityConflicts:applicabilityConflicts(state),rows,phases:stageResults,gaps:rows.filter(t=>t.missing.length||!t.a).length,done:rows.filter(t=>t.complete).length,outsourced:rows.filter(t=>t.assignments.some(a=>a.mode==='si')).length,merged:rows.filter(t=>t.assignments.some(a=>a.mode==='merge')).length,reviewConflict:qa.valid&&devOwners.has(qaKey),unknownConsultations:rows.filter(t=>t.consultants.some(a=>!a.valid)).length};}
+ function setAvailability(state,id,value){if(id==='exec'||!byRole(id))return state;return {...state,available:{...state.available,[id]:!!value}};}
+ function setRoute(state,id,route){return {...state,routes:{...state.routes,[id]:{...state.routes[id],...route}}};}
+ function setProgress(state,id,patch){return {...state,progress:{...state.progress,[id]:{...state.progress[id],...patch}}};}
+ return {roleNeeded,applicabilityConflicts,roles,phases,tasks,byRole,createState,activeTasks,resolve,evaluate,setAvailability,setRoute,setProgress};
+})();
+if(typeof module!=='undefined')module.exports=ProductWorkflow;

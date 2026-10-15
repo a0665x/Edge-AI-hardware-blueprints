@@ -1,0 +1,31 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="以場景、技術與限制卡片建立 Edge AI 評估池，查看平台候選與可追溯決策。"><title>Edge AI｜需求評估工作台</title><style>/*STYLES*/</style></head><body>
+<a class="skip" href="#workspace">跳到評估工作台</a>
+<header class="topbar"><a class="brand" href="index.html"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><path d="M3 7h9v9H3zM16 12h9v9h-9zM12 11h8M8 16v8h8" fill="none" stroke="currentColor" stroke-width="2"/></svg>Edge AI <span>選型工作台</span></a><nav aria-label="主要導覽"><select id="language" class="language-switch" aria-label="介面語言"><option value="zh">繁體中文</option><option value="en">English</option></select><button id="methodBtn">思考流程</button><button id="referenceBtn">參考圖譜 <span class="count">13</span></button><button id="exportBtn" class="primary">匯出評估</button></nav></header>
+<div id="workbenchTabs" class="workbench-tabs" role="tablist" aria-label="工作階段"><button id="selectionTab" role="tab" aria-selected="true" aria-controls="selectionPanel" tabindex="0">應用裝置選型</button><button id="deliveryTab" role="tab" aria-selected="false" aria-controls="deliveryPanel" tabindex="-1">產品開發流程</button></div>
+<div id="selectionPanel" role="tabpanel" aria-labelledby="selectionTab"><main id="workspace">
+<div class="intro"><div><h1>從使用需求，找到裝置方向。</h1><p>先以人流範例起步；拖入你的需求，回看每個推薦的依據。</p></div><label class="preset-label">套用範例<select id="preset"><option value="">選擇場景組合…</option><option value="people">商店人流計數</option><option value="points">快速特徵點追蹤</option><option value="lowpower">5 W 點追蹤：衝突示例</option><option value="document">離線文件終端</option><option value="semantic">巡檢語意判讀</option><optgroup label="公開案例衍生預設"><option value="strata">Strata / Qwen3.8 本地 Agent</option><option value="halo">Strata / Strix Halo 語音延伸</option><option value="riva">Jetson / Riva 語音延伸</option><option value="seco">SECO / QCS6490 本地 RAG</option><option value="qcs8550case">QCS8550 / 多相機 Edge AI</option><option value="intelcheck">Intel / 零售訂單核對</option><option value="kncam">Kneron / 廣角智慧相機</option><option value="ambcam">Ambarella / 4K 安防</option><option value="amr">AMR / 度量避障起測</option><option value="uavlong">無人機 / 120m 遠距追蹤</option><option value="uavsurvey">無人機 / 空拍建圖與尺度</option><option value="uavflight">無人機 / 室內低速飛行避障</option><option value="robotspace">移動機器人 / 近遠場融合</option><option value="vehiclefar">車載 / 80m 遠場觀測</option></optgroup></select></label></div>
+<div class="workbench">
+<section class="library" aria-labelledby="libraryTitle"><div class="section-head"><h2 id="libraryTitle"><span class="step">1</span>挑選卡片</h2><button class="icon-button" data-info="help" data-tip="拖拉、批次加入或點選＋；右鍵可看介紹。" aria-label="卡片操作說明">?</button></div>
+<label class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" placeholder="搜尋場景、模型、限制" aria-label="搜尋卡片" type="search"></label>
+<div class="tabs" role="group" aria-label="卡片類別"><button data-group="scene" aria-pressed="true">場景</button><button data-group="model" aria-pressed="false">技術</button><button data-group="need" aria-pressed="false">需求</button><button data-group="limit" aria-pressed="false">限制</button></div>
+<div class="batchbar"><span id="selectionCount">可多選拖入</span><button id="addSelected" disabled>加入已選</button></div><div id="catalog" class="catalog"></div>
+<div class="library-foot">右鍵看介紹 · <kbd>Tab</kbd> 選取 · <kbd>Enter</kbd> 操作</div></section>
+<section class="pool-column" aria-labelledby="poolTitle"><div class="section-head"><h2 id="poolTitle"><span class="step">2</span>組合評估池 <span id="poolCount" class="count">0</span></h2><div><button id="undo" disabled>復原</button><button id="clear">清空</button></div></div>
+<div id="pool" class="pool" tabindex="0" aria-label="評估池，將卡片拖入此處或從素材庫加入"><div id="poolContents"></div></div>
+<div id="tuning" class="tuning"></div>
+<div id="trace" class="scene-status"></div>
+</section>
+<section class="results" aria-labelledby="resultTitle"><div class="section-head"><h2 id="resultTitle"><span class="step">3</span>裝置建議</h2><button class="icon-button" data-info="rules" data-tip="依部署路徑排序；分數不是效能或信心值。" aria-label="推薦規則說明">?</button></div><div id="result"></div></section>
+</div>
+<footer>規劃工具 · 官方來源查閱 2026-10-14 · <a href="reference.html#sources" target="_blank" rel="noopener">查看來源</a><span>候選需以模型、SDK 與真機 PoC 驗證。</span></footer>
+</main></div>
+<section id="deliveryPanel" class="delivery-panel" role="tabpanel" aria-labelledby="deliveryTab" hidden><div id="deliveryRoot" data-own-locale="true"></div></section>
+<aside id="drawer" class="drawer" hidden aria-labelledby="drawerTitle" tabindex="-1"><div class="drawer-head"><h2 id="drawerTitle"></h2><button id="closeDrawer" class="icon-button" aria-label="關閉說明">×</button></div><div id="drawerBody"></div></aside>
+<div id="contextMenu" class="context-menu" role="menu" aria-label="卡片選單" hidden><button role="menuitem" id="contextAdd">加入評估池</button><button role="menuitem" id="contextInfo">查看卡片介紹</button></div>
+<div id="tooltip" class="tooltip" role="tooltip" hidden></div><div class="sr-only" id="announcer" role="status" aria-live="polite"></div><div id="toast" class="toast" hidden role="status"></div>
+<script>/*ENGINE*/
+/*I18N*/
+/*WORKFLOWENGINE*/
+/*WORKFLOWUI*/
+/*APP*/
+/*WORKFLOWBRIDGE*/</script></body></html>

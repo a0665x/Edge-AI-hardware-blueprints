@@ -1,0 +1,24 @@
+# Local configuration and private workspace files
+.*
+!.gitignore
+!.nojekyll
+!.github/
+!.github/**
+AGENTS.md
+**/AGENTS.md
+SKILL.md
+**/SKILL.md
+**/agents/
+**/codex/
+*session*.json*
+*conversation*.json*
+*prompts*.json
+*.log
+*.zip
+__pycache__/
+*.py[cod]
+node_modules/
+standalone.html
+.env*
+*.pem
+*.key

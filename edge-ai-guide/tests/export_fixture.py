@@ -1,0 +1,5 @@
+from pathlib import Path
+root=Path(__file__).resolve().parents[2]
+s=(root/'edge-ai-guide/index.html').read_text()
+qa=r'''<script>window.addEventListener('load',async()=>{switchWorkbenchTab('delivery');let blob;const create=URL.createObjectURL;URL.createObjectURL=b=>{blob=b;return 'blob:test'};HTMLAnchorElement.prototype.click=function(){};document.querySelector('[data-pw-action="svg"]').click();const xml=await blob.text();const doc=new DOMParser().parseFromString(xml,'image/svg+xml');const errors=[];if(doc.querySelector('foreignObject'))errors.push('Export still contains HTML nodes whose layout depends on page CSS');if(!doc.documentElement.getAttribute('width'))errors.push('Missing standalone width');if(doc.querySelector('parsererror'))errors.push('Invalid SVG');if(!doc.querySelector('[data-export-node="evt"]'))errors.push('No portable vector stage node');document.head.innerHTML='';document.body.innerHTML='<pre id="result"></pre>';document.getElementById('result').textContent=JSON.stringify({errors,svg:xml});});</script>'''
+Path('/tmp/product-export-qa.html').write_text(s.replace('</body>',qa+'</body>'))

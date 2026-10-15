@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-10-14T00:00:00.000Z" agent="Edge AI Guide" version="24.7.17" type="device">
+  <diagram id="decision" name="01 場景到平台">
+    <mxGraphModel dx="1260" dy="1040" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1260" pageHeight="1040" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" value="產品問題與輸出&#10;可接受錯誤 / 部署限制" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="490" y="20" width="280" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="motion" value="輸入是靜態&#10;或動態？" style="rhombus;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="530" y="116" width="200" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="static" value="靜態：單張／定點觸發&#10;文件、標籤、產線拍照" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="180" y="238" width="290" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="dynamic" value="動態：跨幀／時間狀態&#10;人流、點位、深度、影片" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="790" y="238" width="290" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="deadline" value="決策有回應期限？&#10;Runtime ≠ 即時" style="rhombus;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="512" y="350" width="236" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="offline" value="沒有期限：事後／批次&#10;可用整段影片、吞吐優先" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="180" y="493" width="290" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="online" value="有期限：互動／即時&#10;定義 P95/P99、幀齡與超時" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="790" y="493" width="290" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="algo" value="按輸出選最小可行算法&#10;類別 / 框＋ID / mask / 點 / 深度" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="490" y="603" width="280" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="gate" value="相容性 Gate&#10;模型＋opset＋SDK＋backend" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="490" y="708" width="280" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="budget" value="系統預算 → 平台候選&#10;吞吐＋延遲＋RAM＋ISP＋功耗" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="490" y="820" width="280" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="poc" value="同條件真機 PoC&#10;精度、全管線、熱穩態驗收" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="490" y="932" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="rework" value="不通過：換骨幹／改圖&#10;換 backend；驗證 fallback 成本" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#fff1e5;strokeColor=#b75a2b;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="925" y="708" width="275" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="start" target="motion">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-1" value="靜態" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.0;exitY=0.5;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="motion" target="static">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="325" y="162" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" value="動態" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=1.0;exitY=0.5;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="motion" target="dynamic">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="935" y="162" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.25;entryY=0.2553191489361702;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="static" target="deadline">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="325" y="374" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.75;entryY=0.2553191489361702;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="dynamic" target="deadline">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="935" y="374" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-5" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.25;exitY=0.7553191489361702;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="deadline" target="offline">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="571" y="460" />
+              <mxPoint x="325" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-6" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.75;exitY=0.7553191489361702;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="deadline" target="online">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="689" y="460" />
+              <mxPoint x="935" y="460" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="offline" target="algo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="325" y="637" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="online" target="algo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="935" y="637" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="algo" target="gate">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-10" value="通過" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="gate" target="budget">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="budget" target="poc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-12" value="未通過" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="gate" target="rework">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-13" value="重新驗證" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.49818181818181817;exitY=0.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="rework" target="algo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1062" y="585" />
+              <mxPoint x="630" y="585" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="pipeline" name="02 快慢推論管線">
+    <mxGraphModel dx="1220" dy="810" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1220" pageHeight="810" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="camera" value="感測＋ISP／解碼&#10;30 真實 FPS" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="35" y="120" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="buf" value="預處理／零拷貝／佇列&#10;附 timestamp / 最新幀" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="300" y="120" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="det" value="偵測／深度／定位&#10;10–15 或 30Hz：依需求" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="595" y="38" width="230" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="track" value="追蹤／規則／量測&#10;30Hz + 更新／失追處理" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="920" y="38" width="245" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="fast" value="有期限的本地回應&#10;控制／計數／警報" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="920" y="220" width="245" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="state" value="事件 ROI／狀態摘要&#10;觸發＋節流＋去重" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="595" y="384" width="230" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="semantic" value="語意與決策：慢路徑&#10;本地 VLM / classifier&#10;或 Jev API（部署待確認）" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="920" y="384" width="245" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="human" value="覆核／派工／報表&#10;超時、低信心、離線規則" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="920" y="566" width="245" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="display" value="顯示／錄影：獨立路徑&#10;編碼、插幀只影響呈現" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="300" y="566" width="220" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="note" value="快路徑按幀齡與期限驗收；慢路徑按事件回應驗收。&#10;生成畫面、預測座標與真實感測必須分別計數。" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#fff1e5;strokeColor=#b75a2b;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="35" y="716" width="1130" height="64" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="camera" target="buf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=1.0;exitY=0.25;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="buf" target="det">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="140" />
+              <mxPoint x="560" y="79" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="det" target="track">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.49795918367346936;exitY=1.0;entryX=0.49795918367346936;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="track" target="fast">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-4" value="事件觸發" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="det" target="state">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="state" target="semantic">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.49795918367346936;exitY=1.0;entryX=0.49795918367346936;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="semantic" target="human">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-7" value="保留原始 frame" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="buf" target="display">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="validation" name="03 相容性與驗收">
+    <mxGraphModel dx="1250" dy="740" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="1250" pageHeight="740" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="spec" value="G0：需求與資料集&#10;錯誤代價 / 解析度 / Deadline" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="45" y="50" width="280" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="export" value="G1：匯出與版本鎖定&#10;hash / opset / SDK / precision" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="455" y="50" width="280" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="op" value="G2：編譯與量化 Gate&#10;op attribute / fallback / 精度" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="870" y="50" width="280" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="perf" value="G3：端到端效能&#10;多路 / P95,P99 / frame age" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="870" y="238" width="280" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="thermal" value="G4：熱與併發壓力&#10;功耗 / 降頻 / memory peak" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="455" y="238" width="280" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="release" value="G5：維護與量產&#10;更新回歸 / BSP / 成本 / 供貨" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="45" y="238" width="280" height="86" as="geometry" />
+        </mxCell>
+        <mxCell id="fail" value="不通過：回到需求或技術&#10;改模型／資料路徑／平台" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#fff1e5;strokeColor=#b75a2b;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="455" y="430" width="280" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="accept" value="只有在硬性門檻全部通過後，才比較成本與工程投入。&#10;PoC 用同一影像集、完整管線、固定版本與實際電源模式；合成資料只作補充。" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+          <mxGeometry x="45" y="622" width="1105" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-0" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="spec" target="export">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=1.0;exitY=0.5;entryX=0.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="export" target="op">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="op" target="perf">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="perf" target="thermal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.0;exitY=0.5;entryX=1.0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="thermal" target="release">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-5" value="未通過" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="thermal" target="fail">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge-6" value="回歸" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=1.0;exitY=0.5;entryX=0.5;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="fail" target="export">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1210" y="475" />
+              <mxPoint x="1210" y="16" />
+              <mxPoint x="595" y="16" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge-7" value="通過" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;endArrow=block;endFill=1;strokeColor=#597c6f;fontColor=#143f39;fontSize=15;labelBackgroundColor=#fafcf9;exitX=0.5;exitY=1.0;entryX=0.12669683257918551;entryY=0.0;exitPerimeter=0;entryPerimeter=0;" edge="1" parent="1" source="release" target="accept">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
