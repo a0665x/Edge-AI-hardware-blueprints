@@ -123,8 +123,36 @@ function resourcePlan(models,p,streams,llm){
  return {tasks,hostGB,acceleratorGB,totalGB:hostGB+acceleratorGB,otherHostGB,otherAccelGB,occupancy,allTimed:!localLLM&&tasks.filter(t=>t.place==='accelerator').every(t=>t.timeMs!==null),timedCount:known.length,issues,referenceDevice:p.profileDevice,utilLimit:p.utilLimit};
 }
 const DEFAULTS={sensorFps:30,inferFps:15,speed:600,exposure:4,sensorWidth:1920,inputWidth:480,targetPixels:24,maxStep:24,maxBlur:3,minFeature:6,watts:15,streams:1,ram:16,latency:150,modelSize:'n',costPriority:'technical',maxCostBand:'any',costOverrides:{},modelBudgets:{},systemReserveGB:2,agentRateHz:.5,profileDevice:'nx',utilLimit:.8,strataResidentGB:48,strataGpuGB:10,llmPlacement:'local',llmMemoryPlace:'auto',decisionPlacement:'local',jevParamsB:3,jevBits:4,jevStateGB:1,jevBackend:'host',cameraPlatform:'fixed',lensClass:'wide',pixelMode:'measured',viewDistance:5,objectMeters:1,objectHeightMeters:1,scaleAnchor:'none',sensorHeight:720,targetHeight:24,objectWidth:80,objectHeight:120,fov:90,angularSpeed:0,stabilization:'none',shutter:'rolling',imuSyncMs:5,trackingPoints:32,occlusion:'partial',lighting:'normal',smallDefectPx:8,depthUse:'relative',depthMode:'relative',nearDistance:1,nearError:.03,farDistance:5,farError:.15,robotSpeed:1,deceleration:1,margin:.2,baselineMm:75,focalPx:700,disparityError:.5,llmProfile:'flash',llmRuntime:'strata',strataQuant:'iq3',weightBits:4,contextTokens:8192,kvGB:2,runtimeGB:4,concurrency:1,hostReserveGB:8,ssdGB:128,speechDeadline:500,responseMetric:'firstAudio',vadMs:100,asrMs:100,ttsMs:80,toolMs:0,replyTokens:32,measuredTps:0,audioPlaybackMs:3000,audioEnv:'quiet',bargeIn:'yes',speechRuntime:'generic',sensorBus:'usb',timestampSync:'unknown'};
+// One applicability policy shared by rendering and evaluation.
+function conditionContext(ids,params={}){
+ const selected=new Set(ids),p={...DEFAULTS,...params},scenes=CATALOG.filter(c=>c.group==='scene'&&selected.has(c.id)),models=CATALOG.filter(c=>c.group==='model'&&selected.has(c.id)).map(c=>c.id);
+ const vision=scenes.some(c=>!['voiceagent','ragagent','document'].includes(c.id))||selected.has('camera');
+ const points=models.some(m=>['tapir','cotracker'].includes(m));
+ const depth=scenes.some(c=>['depthscene','obstacle','uavmap','uavavoid','mobilerobot','vehicle'].includes(c.id))||selected.has('metric')||models.includes('stereo');
+ const motion=points||selected.has('motion')||models.includes('stabilize')||(vision&&p.cameraPlatform!=='fixed')||scenes.some(c=>c.id==='gimbaltrack');
+ const avoid=depth&&(p.depthUse==='avoid'||scenes.some(c=>['obstacle','uavavoid','mobilerobot'].includes(c.id)));
+ const metric=depth&&(avoid||p.depthUse==='measure'||p.depthMode!=='relative');
+ const localLLM=models.includes('llm')&&p.llmPlacement==='local',speech=scenes.some(c=>c.id==='voiceagent')||selected.has('audio'),inactive=new Set();
+ const only=(active,keys)=>{if(!active)keys.split(' ').forEach(k=>inactive.add(k));};
+ only(points,'targetPixels maxStep maxBlur minFeature trackingPoints');
+ only(vision,'cameraPlatform lensClass pixelMode viewDistance sensorWidth sensorHeight fov inputWidth objectWidth objectHeight objectMeters objectHeightMeters sensorFps exposure lighting sensorBus');
+ only(vision&&p.pixelMode==='geometry','objectMeters objectHeightMeters');
+ only(vision&&p.pixelMode==='measured','objectWidth objectHeight');
+ only(motion,'angularSpeed imuSyncMs stabilization shutter');only(points||motion,'speed');
+ only(vision&&(motion||selected.has('sensorio')),'timestampSync');
+ only(scenes.some(c=>c.id==='inspection'),'smallDefectPx');
+ only(depth,'depthUse depthMode');only(metric,'nearDistance nearError farDistance farError');
+ only(depth&&p.depthMode==='metricmono','scaleAnchor');only(depth&&p.depthMode==='stereo','baselineMm focalPx disparityError');only(avoid,'robotSpeed deceleration margin');
+ only(models.includes('llm')||models.includes('jev'),'agentRateHz');
+ only(localLLM,'llmProfile llmRuntime llmMemoryPlace strataQuant contextTokens weightBits kvGB runtimeGB hostReserveGB ssdGB strataResidentGB strataGpuGB');
+ only(speech,'speechDeadline responseMetric audioEnv bargeIn speechRuntime vadMs asrMs ttsMs toolMs replyTokens measuredTps audioPlaybackMs');
+ only(speech&&p.responseMetric==='fullReply','audioPlaybackMs replyTokens measuredTps');
+ only(vision||models.some(m=>!['llm','jev','asr','tts','rag'].includes(m)),'inferFps');
+ return {vision,points,depth,motion,avoid,metric,speech,inactive};
+}
 function evaluate(ids,params={}){
  const selected=new Set(ids.filter(id=>CATALOG.some(c=>c.id===id))),p={...DEFAULTS,...params};
+ const context=conditionContext([...selected],p);for(const key of context.inactive)p[key]=DEFAULTS[key];
  const scenes=CATALOG.filter(c=>c.group==='scene'&&selected.has(c.id));
  const models=CATALOG.filter(c=>c.group==='model'&&selected.has(c.id)).map(c=>c.id);
  const vision=scenes.some(c=>!['voiceagent','ragagent','document'].includes(c.id))||selected.has('camera');
@@ -199,7 +227,7 @@ function evaluate(ids,params={}){
  let depth=null;
  if(depthWork){
   const avoid=p.depthUse==='avoid'||scenes.some(c=>['obstacle','uavavoid','mobilerobot'].includes(c.id));
-  if(p.nearDistance>=p.farDistance)issue('depthrange','近距測點須小於遠距測點。');
+  if(context.metric&&p.nearDistance>=p.farDistance)issue('depthrange','近距測點須小於遠距測點。');
   if((avoid||p.depthUse==='measure')&&p.depthMode==='relative')issue('metric','測距／避障需要公尺與誤差預算；相對 Depth Anything 請改度量模型、Stereo / ToF 或融合。');
   if(['stereo','tof','fusion'].includes(p.depthMode)&&!models.includes('stereo'))issue('sensorpath','已選度量感測路徑但缺 Stereo / ToF 技術卡，請加入或改模型。');
   if(p.depthMode==='metricmono'&&!models.includes('depth'))issue('depthtech','度量單目路徑缺少深度模型技術卡。');
@@ -208,8 +236,8 @@ function evaluate(ids,params={}){
   depth={nearSigma:sigma(p.nearDistance),farSigma:sigma(p.farDistance),stopDistance:p.robotSpeed*(selected.has('latency')?p.latency:150)/1000+p.robotSpeed*p.robotSpeed/(2*p.deceleration)+p.margin+Math.max(p.nearError,p.farError),avoid};
   if(p.depthMode==='stereo'&&(depth.nearSigma>p.nearError||depth.farSigma>p.farError))issue('depthprecision','Stereo 幾何誤差起測估算超出分段預算：增加 baseline / 焦距、降低 disparity 誤差或改感測器；加算力不能直接解決。');
   if(avoid&&depth.stopDistance>p.farDistance)issue('stop','估算煞停距離大於最遠有效感知距離：降低速度、延遲或增加可用感知距離。');
-  req('公尺精度與控制',issues.some(i=>['metric','sensorpath','depthprecision','stop','depthrange','scale'].includes(i.code))?'bad':'wait',`近 ${p.nearDistance} m ±${p.nearError} m；遠 ${p.farDistance} m ±${p.farError} m。${avoid?`估算煞停距離 ${depth.stopDistance.toFixed(2)} m。`:''}`);
-  pending.push('距離誤差是驗收需求；Stereo 公式只有幾何項，不是模型的總誤差／95% 保證。反光、低紋理和尺度漂移需實測。');
+  if(context.metric)req('公尺精度與控制',issues.some(i=>['metric','sensorpath','depthprecision','stop','depthrange','scale'].includes(i.code))?'bad':'wait',`近 ${p.nearDistance} m ±${p.nearError} m；遠 ${p.farDistance} m ±${p.farError} m。${avoid?`估算煞停距離 ${depth.stopDistance.toFixed(2)} m。`:''}`);
+  if(context.metric)pending.push('距離誤差是驗收需求；Stereo 公式只有幾何項，不是模型的總誤差／95% 保證。反光、低紋理和尺度漂移需實測。');
  }
  let llm=null;
  if(agentWork){
@@ -319,4 +347,4 @@ function evaluate(ids,params={}){
  ];
  return {ids:[...selected],params:p,scenes,models,issues,pending,metrics,resources,requirements,depth,llm,speech,candidates,winner,stages,detectorOps,streams};
 }
-if(typeof module!=='undefined')module.exports={CATALOG,DEVICES,DEFAULTS,PLATFORM_CASES,LLM_PROFILES,SCENE_CONSTRAINTS,RESOURCE_DEFAULTS,COST_BANDS,DEVICE_COST_DEFAULTS,evaluate};
+if(typeof module!=='undefined')module.exports={conditionContext,CATALOG,DEVICES,DEFAULTS,PLATFORM_CASES,LLM_PROFILES,SCENE_CONSTRAINTS,RESOURCE_DEFAULTS,COST_BANDS,DEVICE_COST_DEFAULTS,evaluate};

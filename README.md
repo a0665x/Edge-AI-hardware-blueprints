@@ -7,6 +7,7 @@ A visual planning workbench for startups and teams exploring a new AI product. T
 ## From an idea to a delivery plan
 
 1. **Define the application.** Combine scenario, technique and requirement cards: vision, tracking, depth, robotics, speech and local language models.
+   Conditions follow the selected scenario and deployment path; advanced settings expand on demand. Inapplicable values do not affect the evaluation.
 2. **Explore hardware fit.** Review camera constraints, runtime compatibility, concurrent memory/compute, power and procurement bands. Inspect why each device is shortlisted or excluded.
 3. **Plan product delivery.** Carry the assessment into a hardware/software workflow, identify missing or unnecessary functions, and assign internal or external ownership.
 4. **Make responsibilities explicit.** Follow engineering, validation, production and operational feedback through a RACI table: Responsible, Accountable, Consulted and Informed.
