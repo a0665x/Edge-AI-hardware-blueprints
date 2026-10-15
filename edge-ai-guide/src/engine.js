@@ -108,7 +108,7 @@ function resourcePlan(models,p,streams,llm){
   const copies=['asr','tts','rag'].includes(id)?p.concurrency:streams;
   const rate=custom.rateHz===undefined?(['asr','tts','rag'].includes(id)?p.agentRateHz:p.inferFps):Number(custom.rateHz);
   const timing=custom.timings?.[p.profileDevice];const ms=timing===undefined||timing===''||timing===null?null:Number(timing);
-  if(!Number.isFinite(weightGB)||!Number.isFinite(stateGB)||weightGB<0||weightGB>2048||stateGB<0||stateGB>2048||!Number.isFinite(rate)||rate<0||rate>10000||!['host','accelerator'].includes(place)||(ms!==null&&(!Number.isFinite(ms)||ms<0)))issues.push({code:'resourceinput',text:`${id} 資源預算無效，請填入非負數與有效執行位置。`});
+  if(!Number.isFinite(weightGB)||!Number.isFinite(stateGB)||weightGB<0||weightGB>2048||stateGB<0||stateGB>2048||!Number.isFinite(rate)||rate<0||rate>10000||!['host','accelerator'].includes(place)||(ms!==null&&(!Number.isFinite(ms)||ms<0)))issues.push({code:'resourceinput',task:id,text:`${id} 資源預算無效，請填入非負數與有效執行位置。`});
   tasks.push({id,weightGB,stateGB,copies,rateHz:rate,timeMs:ms,place,totalGB:weightGB+stateGB*copies,occupancy:ms===null?null:ms*rate*copies/1000});
  }
  if(models.includes('jev')&&p.decisionPlacement==='local'){
@@ -161,7 +161,7 @@ function evaluate(ids,params={}){
  const agentWork=models.includes('llm');const localAgent=agentWork&&p.llmPlacement==='local';const localDecision=models.includes('jev')&&p.decisionPlacement==='local';
  const speechWork=scenes.some(c=>c.id==='voiceagent')||selected.has('audio');
  const motionWork=pointWork||selected.has('motion')||models.includes('stabilize')||(vision&&p.cameraPlatform!=='fixed')||scenes.some(c=>c.id==='gimbaltrack');
- const issues=[], pending=[]; const issue=(code,text)=>issues.push({code,text});
+ const issues=[], pending=[]; const issue=(code,text,extra={})=>issues.push({code,text,...extra});
  const owners={sensorFps:'camera',speed:'camera',exposure:'camera',sensorWidth:'camera',inputWidth:'camera',targetPixels:'camera',maxStep:'camera',maxBlur:'camera',minFeature:'camera',watts:'power',streams:'multi',ram:'memory',latency:'latency'};
  for(const [key,min,max] of [['sensorFps',1,1000],['inferFps',.1,1000],['speed',0,100000],['exposure',.01,1000],['sensorWidth',1,20000],['inputWidth',1,20000],['targetPixels',.1,20000],['maxStep',.1,10000],['maxBlur',.1,10000],['minFeature',.1,10000],['watts',.1,10000],['streams',1,128],['ram',1,1024],['latency',1,600000]]){
   if(['maxStep','maxBlur','minFeature'].includes(key)&&!pointWork){p[key]=DEFAULTS[key];continue;}
@@ -322,7 +322,7 @@ function evaluate(ids,params={}){
   if(speechWork)checks.push(`以 ${p.speechDeadline} ms ${p.responseMetric==='firstAudio'?'首音訊':'完整回覆'}驗收 VAD / ASR / prefill / 工具 / TTS；沒有此組合實測。`);
   if(localAgent&&!llm.strata&&d.id==='rtx')checks.push('RAM 與 VRAM 分開；不能把 host RAM 當作全 GPU 顯存，offload 效能需另測。');
   const costBand=(p.costOverrides||{})[d.id]||DEVICE_COST_DEFAULTS[d.id]||'mid';const costRank=COST_BANDS[costBand]?.order;
-  if(!costRank)issue('costinput',`${d.name} 採購等級無效。`);
+  if(!costRank)issue('costinput',`${d.name} 採購等級無效。`,{device:d.id});
   if(p.maxCostBand!=='any'&&costRank>COST_BANDS[p.maxCostBand]?.order)blocked.push(`採購等級 ${costBand} 超出上限 ${p.maxCostBand}；分級是使用者規劃，不是市價。`);
   const unified=['gpu','unifiedpc','pc','soc'].includes(d.family);
   if(unified&&d.ram&&resources.totalGB>d.ram)blocked.push(`同時運行規劃記憶體 ${resources.totalGB.toFixed(1)} GB 超過此配置 ${d.ram} GB，需降低模型／狀態負載或換配置。`);

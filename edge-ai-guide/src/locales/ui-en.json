@@ -712,5 +712,6 @@
   "確認目標在畫面中是否足夠清楚；只有追蹤或移動取像才需要運動細節。": "Check that the target is visible enough. Motion details apply to tracking or moving cameras.",
   "進階取像與鏡頭條件": "Advanced camera and lens conditions",
   "相對深度只比較前後關係；選擇測距或避障後，再填公尺誤差與有效距離。": "Relative depth compares near and far. Choose measurement or avoidance to specify metric error and usable distance.",
-  "僅顯示目前應用需要的條件；進階設定可按需展開。切換場景後，不適用的舊值不參與評估。": "Only applicable conditions are shown. Expand advanced settings when needed; inactive values from other scenarios do not affect the assessment."
+  "僅顯示目前應用需要的條件；進階設定可按需展開。切換場景後，不適用的舊值不參與評估。": "Only applicable conditions are shown. Expand advanced settings when needed; inactive values from other scenarios do not affect the assessment.",
+  "前往修改 ↗": "Go to fix ↗"
 }
