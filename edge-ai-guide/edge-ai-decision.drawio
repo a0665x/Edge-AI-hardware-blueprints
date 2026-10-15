@@ -148,7 +148,7 @@
         <mxCell id="state" value="事件 ROI／狀態摘要&#10;觸發＋節流＋去重" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="595" y="384" width="230" height="82" as="geometry" />
         </mxCell>
-        <mxCell id="semantic" value="語意與決策：慢路徑&#10;本地 VLM / classifier&#10;或 Jev API（部署待確認）" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
+        <mxCell id="semantic" value="語意與決策：慢路徑&#10;本地 VLM / classifier&#10;Jev / RLCD Qwen：本地或雲端" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">
           <mxGeometry x="920" y="384" width="245" height="82" as="geometry" />
         </mxCell>
         <mxCell id="human" value="覆核／派工／報表&#10;超時、低信心、離線規則" style="rounded=1;arcSize=15;whiteSpace=wrap;html=0;fillColor=#e9f1eb;strokeColor=#9eb9ab;fontColor=#143f39;fontSize=17;fontFamily=Arial;spacing=8;" vertex="1" parent="1">

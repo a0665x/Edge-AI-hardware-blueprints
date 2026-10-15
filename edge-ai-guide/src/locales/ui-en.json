@@ -550,7 +550,7 @@
   "飛控限制": "Flight-controller limits",
   "飛行避障規劃示例；飛控／安全驗證另行進行": "Flight-avoidance planning example; flight-controller/safety validation is separate",
   "首音訊": "First audio",
-  "驗收 VAD / ASR / prefill / 工具 / TTS；沒有此組合實測。": "Validate VAD/ASR/prefill/tools/TTS. No measurements for this combination.",
+  "驗收 VAD / ASR / prefill / 工具 / TTS；沒有此組合實測。": ": validate VAD / ASR / prefill / tools / TTS. No measurements for this combination.",
   "驗證 GPU cache / CPU-RAM / SSD embedding 分層及 cold / warm prefill。": "Validate GPU cache, CPU-RAM, SSD embedding tiers and cold/warm prefill.",
   "高追蹤點數的 state / attention 記憶體餘裕": "State/attention memory headroom for many tracked points",
   "高追蹤點數與融合餘裕": "Headroom for many points and fusion",
@@ -713,5 +713,6 @@
   "進階取像與鏡頭條件": "Advanced camera and lens conditions",
   "相對深度只比較前後關係；選擇測距或避障後，再填公尺誤差與有效距離。": "Relative depth compares near and far. Choose measurement or avoidance to specify metric error and usable distance.",
   "僅顯示目前應用需要的條件；進階設定可按需展開。切換場景後，不適用的舊值不參與評估。": "Only applicable conditions are shown. Expand advanced settings when needed; inactive values from other scenarios do not affect the assessment.",
-  "前往修改 ↗": "Go to fix ↗"
+  "前往修改 ↗": "Go to fix ↗",
+  "以 ": "For "
 }

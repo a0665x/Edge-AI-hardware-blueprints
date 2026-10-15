@@ -2,10 +2,10 @@
 var deliveryController;
 function deliverySnapshot(){
  const e=evaluation,p=e.params;
- return {key:JSON.stringify({ids:e.ids,params:p,winner:e.winner?.id}),created:new Date().toISOString(),deviceId:e.winner?.id||null,deviceName:e.winner?.name||'',conditional:true,
+ return {key:JSON.stringify({ids:e.ids,params:p,winner:e.winner?.id}),created:new Date().toISOString(),deviceId:e.winner?.id||null,deviceName:e.winner?.name||'',deviceNameEn:translateText(e.winner?.name||'','en'),conditional:true,
  sceneNames:e.scenes.map(c=>c.name).join(' + '),sceneNamesEn:e.scenes.map(c=>EN_CARDS[c.id]?.[0]||c.name).join(' + '),modelNames:e.models.join(' + '),memoryGB:Number(e.resources.totalGB.toFixed(1)),openCount:e.issues.length+e.pending.length,
  flags:{vision:e.models.some(m=>['tapir','cotracker','depth','stereo','slam'].includes(m))||p.viewDistance>=30||p.cameraPlatform!=='fixed',speech:!!e.speech,cloud:(e.models.includes('llm')&&p.llmPlacement==='cloud')||(e.models.includes('jev')&&p.decisionPlacement==='cloud'),mobile:p.cameraPlatform!=='fixed'||e.scenes.some(s=>['obstacle','mobilerobot','uavavoid','vehicle'].includes(s.id))},
- selectedIds:[...e.ids],params:JSON.parse(JSON.stringify(p)),issues:e.issues,pending:e.pending,candidates:e.candidates.map(d=>({id:d.id,name:d.name,blocked:d.blocked,costBand:d.costBand,route:d.route}))};
+ selectedIds:[...e.ids],params:JSON.parse(JSON.stringify(p)),issues:e.issues,pending:e.pending,candidates:e.candidates.map(d=>({id:d.id,name:d.name,nameEn:translateText(d.name,'en'),blocked:d.blocked,costBand:d.costBand,route:d.route}))};
 }
 function switchWorkbenchTab(tab,focus=false){
  const delivery=tab==='delivery';$('selectionPanel').hidden=delivery;$('deliveryPanel').hidden=!delivery;

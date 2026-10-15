@@ -26,3 +26,12 @@ ref=root/'reference.html'
 s=ref.read_text().replace('演演算法','演算法')
 if '回到評估工作台' not in s:s=s.replace('<div class="rail-bottom">','<div class="rail-bottom"><a href="index.html">← 回到評估工作台</a>')
 ref.write_text(s)
+
+# Export a complete English counterpart of the static method diagram.
+import xml.etree.ElementTree as ET
+diagram=ET.parse(root/'edge-ai-decision.drawio')
+diagram_labels=json.loads((src/'locales/drawio-en.json').read_text())
+for node in diagram.iter():
+ for attr in ('name','value'):
+  if node.get(attr):node.set(attr,diagram_labels[node.get(attr)])
+diagram.write(root/'edge-ai-decision-en.drawio',encoding='unicode',xml_declaration=True)
