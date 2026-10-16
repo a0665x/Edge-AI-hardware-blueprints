@@ -15,7 +15,7 @@ vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],context);
 function run(s){return vm.runInContext(s,context)}
 let checks=0;function test(name,fn){fn();checks++;console.log('PASS',name)}
 test('standalone startup renders all three zones',()=>{assert(elements.catalog.innerHTML.includes('人流'));assert(elements.poolContents.innerHTML.includes('YOLO'));assert(elements.result.innerHTML.includes('PoC'));assert.equal(run('evaluation.ids.length'),6);});
-test('add scene carries suggested algorithm',()=>{run("add(['points'])");assert(run("pool.has('tapir')"));});
+test('ambiguous scene offers choices before adding an algorithm',()=>{run("add(['points'])");assert(!run("pool.has('tapir')"));assert(elements.drawerBody.innerHTML.includes('cotracker'));run("add(['tapir'])");assert(run("pool.has('tapir')"));});
 test('remove necessary model suppresses recommendation',()=>{run("remove('tapir')");assert.equal(run('evaluation.winner'),null);});
 test('undo restores selection',()=>{elements.undo.handlers.click();assert(run("pool.has('tapir')"));});
 test('clear creates empty instructional state and undo works',()=>{elements.clear.handlers.click();assert(elements.poolContents.innerHTML.includes('把需求放進來'));assert.equal(run('evaluation.winner'),null);elements.undo.handlers.click();assert(run('pool.size')>0);});

@@ -352,5 +352,42 @@ function evaluateBase(ids,params={}){
  ];
  return {ids:[...selected],params:p,scenes,models,issues,pending,metrics,resources,requirements,depth,llm,speech,candidates,winner,stages,detectorOps,streams};
 }
-function evaluate(ids,params={}){return AIOT.assess(evaluateBase(ids,params));}
-if(typeof module!=='undefined')module.exports={conditionContext,CATALOG,DEVICES,DEFAULTS,PLATFORM_CASES,LLM_PROFILES,SCENE_CONSTRAINTS,RESOURCE_DEFAULTS,COST_BANDS,DEVICE_COST_DEFAULTS,evaluate};
+// Dependencies describe capabilities, not a promise of runtime compatibility.
+function dependencyRules(ids,p={}){
+ const set=new Set(ids), rules=[];
+ const capabilities={iotlocal:['llm'],iotcv:['mcuvision'],iotcompanion:['iotlink'],uavtrack:['tapir','cotracker'],uavmap:['slam'],uavavoid:['stereo'],mobilerobot:['slam'],vehicle:['yolo'],obstacle:['stereo','depth'],gimbaltrack:['tapir','cotracker'],voiceagent:['llm'],ragagent:['llm'],checkout:['yolo'],security:['yolo'],pose:['posemodel'],people:['yolo'],inspection:['yolo','sam'],document:['ocr','vlm'],points:['tapir','cotracker'],depthscene:['depth'],maskscene:['sam'],semantic:['vlm']};
+ for(const c of CATALOG.filter(c=>c.group==='scene'&&set.has(c.id))){
+  const groups=[capabilities[c.id]||[]];
+  if(['voiceagent','iotlocal'].includes(c.id))groups.push(['asr'],['tts']);
+  if(c.id==='iotlocal')groups.push(['iotlink']);
+  if(c.id==='ragagent')groups.push(['rag']);
+  for(const choices of groups)rules.push({source:c.id,choices,reason:'場景輸出需要此技術能力。'});
+ }
+ const need=(source,choices,reason)=>rules.push({source,choices,reason});
+ if(set.has('rag'))need('rag',['llm'],'檢索資料需要生成模型組成回答。');
+ if(set.has('iotcompanion')&&p.companionBackend==='local')for(const id of ['llm','asr','tts'])need('iotcompanion',[id],'本地語音對話需要辨識、生成與語音合成。');
+ if(set.has('metric')||set.has('stopping'))need(set.has('metric')?'metric':'stopping',['depth','stereo'],'公尺距離與停止距離需要深度路徑；仍須校準尺度與誤差。');
+ if(ids.some(id=>['depth','stereo','depthscene','obstacle','uavavoid','mobilerobot'].includes(id))){
+  if(['stereo','tof','fusion'].includes(p.depthMode))need('sensorio',['stereo'],'所選感測融合路徑需要感測器整合技術。');
+  if(p.depthMode==='metricmono')need('metric',['depth'],'單目公尺距離需要深度模型與尺度校準。');
+ }
+ if(ids.some(id=>['motion','tapir','cotracker','gimbaltrack','uavtrack','uavmap','uavavoid','vehicle','mobilerobot'].includes(id))&&['imu','visual'].includes(p.stabilization))need('motion',['stabilize'],'所選補償路徑需要穩像與時間同步。');
+ return rules.map(rule=>({...rule,met:rule.choices.some(id=>set.has(id))}));
+}
+function dependencyClosure(ids,p={}){
+ const selected=new Set(ids),added=[];
+ for(let pass=0;pass<CATALOG.length;pass++){
+  const missing=dependencyRules([...selected],p).filter(r=>!r.met&&r.choices.length===1);
+  if(!missing.length)break;
+  for(const rule of missing){const id=rule.choices[0];if(!selected.has(id)){selected.add(id);added.push({...rule,id});}}
+ }
+ return {ids:[...selected],added,choices:dependencyRules([...selected],p).filter(r=>!r.met)};
+}
+function evaluate(ids,params={}){
+ const result=AIOT.assess(evaluateBase(ids,params));
+ result.dependencies=dependencyRules(ids,{...DEFAULTS,...params});
+ for(const rule of result.dependencies.filter(r=>!r.met))result.issues.push({code:'dependency',text:(CATALOG.find(c=>c.id===rule.source)?.name||rule.source)+' → '+rule.choices.map(id=>CATALOG.find(c=>c.id===id).name).join(' / ')+'：'+rule.reason,choices:rule.choices});
+ if(result.dependencies.some(r=>!r.met))result.winner=null;
+ return result;
+}
+if(typeof module!=='undefined')module.exports={dependencyRules,dependencyClosure,conditionContext,CATALOG,DEVICES,DEFAULTS,PLATFORM_CASES,LLM_PROFILES,SCENE_CONSTRAINTS,RESOURCE_DEFAULTS,COST_BANDS,DEVICE_COST_DEFAULTS,evaluate};

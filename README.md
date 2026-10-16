@@ -14,7 +14,7 @@ A visual planning workbench for startups and teams exploring a new AI product. T
 
 The interface supports **English and Traditional Chinese**, contextual explanations, interactive workflow states, and JSON, CSV, SVG and draw.io exports.
 
-AIoT examples cover **ESP32 + a local Qwen host**, **MCU camera vision**, and **a connected home companion**. Endpoint PSRAM/power and host RAM/compute stay separate; camera interfaces and model-specific evidence affect the shortlist. See the [implementation evidence and limits](docs/aiot-evidence.md).
+AIoT examples cover **ESP32 + a local Qwen host**, **MCU camera vision**, and **a connected home companion**. Endpoint PSRAM/power and host RAM/compute stay separate; camera interfaces and model-specific evidence affect the shortlist. See the [implementation evidence and limits](docs/aiot-evidence.md). Required technologies now include dependency explanations and explicit alternative choices. A Qualcomm worksheet defaults to FP32 and separates proxy/model timings from target-board measurements. See [selection guardrails and test coverage](docs/selection-guardrails.md).
 
 ## Screenshots
 

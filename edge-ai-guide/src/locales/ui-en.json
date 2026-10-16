@@ -714,5 +714,17 @@
   "相對深度只比較前後關係；選擇測距或避障後，再填公尺誤差與有效距離。": "Relative depth compares near and far. Choose measurement or avoidance to specify metric error and usable distance.",
   "僅顯示目前應用需要的條件；進階設定可按需展開。切換場景後，不適用的舊值不參與評估。": "Only applicable conditions are shown. Expand advanced settings when needed; inactive values from other scenarios do not affect the assessment.",
   "前往修改 ↗": "Go to fix ↗",
-  "以 ": "For "
+  "以 ": "For ",
+  "評估已更新": "Assessment updated",
+  "技術依賴與選擇": "Technology dependencies and choices",
+  "必要技術已一併加入並計入資源；多種解法請選擇。可使用復原還原整次操作。": "Required technologies were added to the resource budget. Choose between alternatives. Undo restores the entire action.",
+  "場景輸出需要此技術能力。": "The scenario output requires this capability.",
+  "檢索資料需要生成模型組成回答。": "Retrieved information requires a generation model to compose an answer.",
+  "本地語音對話需要辨識、生成與語音合成。": "Local voice conversation requires recognition, generation and speech synthesis.",
+  "公尺距離與停止距離需要深度路徑；仍須校準尺度與誤差。": "Metric and stopping distances require a depth path; scale and error still need calibration.",
+  "所選感測融合路徑需要感測器整合技術。": "The selected sensor path requires sensor integration.",
+  "單目公尺距離需要深度模型與尺度校準。": "Monocular metric distance requires a depth model and scale calibration.",
+  "所選補償路徑需要穩像與時間同步。": "The compensation path requires stabilization and time synchronization.",
+  "所選條件需要此技術能力。": "The selected condition requires this capability.",
+  "Qualcomm · 實測參數參考 ↗": "Qualcomm · Benchmark reference ↗"
 }
