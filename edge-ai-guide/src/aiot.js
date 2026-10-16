@@ -53,7 +53,7 @@ const EdgeAIoT=(()=>{
   const endpointMs=c.link?p.iotRttMs+p.iotEndpointMs:0,hostBudgetMs=p.iotDeadlineMs-endpointMs;
   if(c.link&&e.speech&&e.speech.frontMs+e.speech.decodeMs+e.speech.playbackMs+endpointMs>=p.iotDeadlineMs)add('主機的語音前後處理加上網路／端點預算超過 AIoT 期限。',['iotDeadlineMs','iotRttMs','iotEndpointMs','vadMs','asrMs','ttsMs','toolMs']);
   if(p.iotMeasuredW>p.iotMaxW)add('端點實測功耗超過設定上限。',['iotMeasuredW','iotMaxW']);
-  if(c.link&&e.speech)e.speech.remainingMs=Math.min(e.speech.remainingMs,hostBudgetMs-e.speech.frontMs-e.speech.decodeMs-e.speech.playbackMs);
+  if(c.link&&e.speech){e.speech.remainingMs=Math.min(e.speech.remainingMs,hostBudgetMs-e.speech.frontMs-e.speech.decodeMs-e.speech.playbackMs);const requirement=e.requirements.find(r=>r.name==='語音回應期限');if(requirement)requirement.text=p.speechDeadline+' ms / '+T('deadline')+': '+p.iotDeadlineMs+' ms; LLM '+Math.max(0,e.speech.remainingMs).toFixed(0)+' ms';}
   if(c.link&&hostBudgetMs<=0)add('latency',['iotDeadlineMs','iotRttMs','iotEndpointMs']);
   if(c.cv&&p.mcuFps>p.mcuSensorFps)add('cameraFps',['mcuFps','mcuSensorFps']);
   const frameMB=c.cv?p.mcuWidth*p.mcuHeight*p.mcuPixelBytes*p.mcuBuffers/1048576:0;
