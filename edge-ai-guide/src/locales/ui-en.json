@@ -7,8 +7,6 @@
   "匯出評估": "Export assessment",
   "介面語言": "Interface language",
   "繁體中文": "繁體中文",
-  "從使用需求，找到裝置方向。": "Start with the use case. Find the device path.",
-  "先以人流範例起步；拖入你的需求，回看每個推薦的依據。": "Begin with the people-flow example. Add your requirements and inspect each recommendation.",
   "套用範例": "Apply example",
   "選擇場景組合…": "Choose a scenario…",
   "商店人流計數": "Store people counting",
@@ -726,5 +724,7 @@
   "單目公尺距離需要深度模型與尺度校準。": "Monocular metric distance requires a depth model and scale calibration.",
   "所選補償路徑需要穩像與時間同步。": "The compensation path requires stabilization and time synchronization.",
   "所選條件需要此技術能力。": "The selected condition requires this capability.",
-  "Qualcomm · 實測參數參考 ↗": "Qualcomm · Benchmark reference ↗"
+  "Qualcomm · 實測參數參考 ↗": "Qualcomm · Benchmark reference ↗",
+  "拖拉應用需求 → 產出 Edge AI 裝置建議": "Combine requirements → Evaluate Edge AI devices",
+  "組合場景、技術與限制，檢查資源衝突、比較候選平台，再規劃開發分工。": "Combine scenarios, technologies and constraints to check resource conflicts, compare platforms and plan development responsibilities."
 }
