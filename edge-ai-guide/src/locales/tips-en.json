@@ -56,5 +56,22 @@
   "ttsMs": "First playable streaming chunk.",
   "toolMs": "Retrieval and tool return delay; measure variable external API latency separately.",
   "replyTokens": "Included for complete-answer acceptance. Add thinking tokens if required.",
-  "measuredTps": "Zero means unmeasured. Do not substitute another community machine’s result."
+  "measuredTps": "Zero means unmeasured. Do not substitute another community machine’s result.",
+  "iotRttMs": "Measure network round-trip, not Wi-Fi PHY rate.",
+  "iotEndpointMs": "Include endpoint encoding, buffering and playback startup.",
+  "iotDeadlineMs": "From button/utterance end to text or first audio; measure host/service time separately.",
+  "mcuMbps": "Use measured compressed stream bitrate, not resolution or nominal USB speed.",
+  "mcuWidth": "Sensor output width; model input is separately fixed by the chosen example.",
+  "mcuHeight": "Captured dimensions determine buffers, not model input resolution.",
+  "mcuSensorFps": "Sustained fresh frames delivered by the camera driver.",
+  "mcuFps": "Required full-pipeline update rate; published examples are screening references, not guarantees.",
+  "mcuBuffers": "Count simultaneous capture, processing and queued frames.",
+  "mcuPixelBytes": "Grayscale 1, RGB565 2, RGB888 3; MJPEG decoding may still need raw buffers.",
+  "mcuModelMB": "Editable assumption: model, tensor arena and pre/postprocessing peak; camera buffers are separate.",
+  "mcuUiMB": "Concurrent display, audio and connection buffers; replace with measurements.",
+  "mcuReserveMB": "System/fragmentation reserve; internal SRAM and DMA must be verified separately.",
+  "mcuMeasuredS3": "0 means unmeasured; valid only for the current model, camera dimensions, buffers and precision.",
+  "mcuMeasuredP4": "0 means unmeasured; changing model/acquisition configuration clears this value.",
+  "iotMaxW": "ESP32 endpoint only; budget the local host separately.",
+  "iotMeasuredW": "0 means unknown; include concurrent radio, camera, display and audio."
 }

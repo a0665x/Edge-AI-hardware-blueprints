@@ -1,3 +1,4 @@
+const AIOT=typeof module!=='undefined'?require('./aiot.js'):EdgeAIoT;
 /* Pure, deterministic planning rules. Scores are not measured performance. */
 const CATALOG = [
 {id:'people',group:'scene',name:'人流與越線',short:'動態 · 持續推論',icon:'people',models:['yolo'],story:'商店入口：偵測行人、關聯 ID，依方向統計越線。',pipeline:['相機','YOLO','ByteTrack','越線事件'],detail:'以事件召回率與每小時誤報驗收；遮擋、逆光與交叉動線需要真實影片。追蹤 ID 不等於身分辨識。',ref:'scenarios'},
@@ -96,13 +97,15 @@ PLATFORM_CASES.push(
 );
 Object.assign(SCENE_CONSTRAINTS,{uavtrack:['longrange','optics','motion','camera','sensorio','latency'],uavmap:['longrange','motion','metric','sensorio','memory'],uavavoid:['motion','metric','stopping','sensorio','power','latency'],mobilerobot:['motion','metric','stopping','sensorio','latency'],vehicle:['longrange','motion','metric','camera','sensorio','latency']});
 for(const c of CATALOG){const preset=PLATFORM_CASES.find(x=>x.scene===c.id&&['uavtrack','uavmap','uavavoid','mobilerobot','vehicle'].includes(c.id));if(preset){c.platform=preset.params.cameraPlatform;c.sceneDefaults={...preset.params};}}
+CATALOG.push(...AIOT.data.scenes,...AIOT.data.models);
+PLATFORM_CASES.push(...AIOT.data.cases);
 // Editable planning envelopes, not benchmark measurements.
 const RESOURCE_DEFAULTS={yolo:[.02,.45],ocr:[.1,.4],tapir:[.1,1.4],cotracker:[.2,2],sam:[.25,3],depth:[.15,1.5],vlm:[1,3],stereo:[.05,.25],stabilize:[.02,.25],asr:[.3,.8],tts:[.2,.8],rag:[.15,.4],posemodel:[.05,.45],slam:[.05,.6]};
 const COST_BANDS={low:{order:1,label:'低',en:'Low'},mid:{order:2,label:'中',en:'Medium'},high:{order:3,label:'高',en:'High'}};
 const DEVICE_COST_DEFAULTS={nano:'mid',nx:'mid',agx:'high',thor:'high',intel:'mid',qcs:'low',qcs8550:'mid',kl:'low',cv72:'mid',rtx:'high',strix:'high'};
 function resourcePlan(models,p,streams,llm){
  const issues=[],tasks=[],budgets=p.modelBudgets&&typeof p.modelBudgets==='object'?p.modelBudgets:{};
- for(const id of models){if(['llm','jev'].includes(id))continue;const def=RESOURCE_DEFAULTS[id]||[0,0];const custom=budgets[id]||{};const weightGB=custom.weightGB===undefined?def[0]:Number(custom.weightGB),stateGB=custom.stateGB===undefined?def[1]:Number(custom.stateGB);
+ for(const id of models){if(['llm','jev','iotlink','mcuvision'].includes(id))continue;const def=RESOURCE_DEFAULTS[id]||[0,0];const custom=budgets[id]||{};const weightGB=custom.weightGB===undefined?def[0]:Number(custom.weightGB),stateGB=custom.stateGB===undefined?def[1]:Number(custom.stateGB);
   const hostDefault=['rag','slam','stereo','stabilize'].includes(id)||(['asr','tts'].includes(id)&&p.speechRuntime==='generic');
   const place=custom.place|| (hostDefault?'host':'accelerator');
   const copies=['asr','tts','rag'].includes(id)?p.concurrency:streams;
@@ -122,17 +125,17 @@ function resourcePlan(models,p,streams,llm){
  const known=tasks.filter(t=>t.place==='accelerator'&&t.occupancy!==null);const occupancy=known.reduce((s,t)=>s+t.occupancy,0);
  return {tasks,hostGB,acceleratorGB,totalGB:hostGB+acceleratorGB,otherHostGB,otherAccelGB,occupancy,allTimed:!localLLM&&tasks.filter(t=>t.place==='accelerator').every(t=>t.timeMs!==null),timedCount:known.length,issues,referenceDevice:p.profileDevice,utilLimit:p.utilLimit};
 }
-const DEFAULTS={sensorFps:30,inferFps:15,speed:600,exposure:4,sensorWidth:1920,inputWidth:480,targetPixels:24,maxStep:24,maxBlur:3,minFeature:6,watts:15,streams:1,ram:16,latency:150,modelSize:'n',costPriority:'technical',maxCostBand:'any',costOverrides:{},modelBudgets:{},systemReserveGB:2,agentRateHz:.5,profileDevice:'nx',utilLimit:.8,strataResidentGB:48,strataGpuGB:10,llmPlacement:'local',llmMemoryPlace:'auto',decisionPlacement:'local',jevParamsB:3,jevBits:4,jevStateGB:1,jevBackend:'host',cameraPlatform:'fixed',lensClass:'wide',pixelMode:'measured',viewDistance:5,objectMeters:1,objectHeightMeters:1,scaleAnchor:'none',sensorHeight:720,targetHeight:24,objectWidth:80,objectHeight:120,fov:90,angularSpeed:0,stabilization:'none',shutter:'rolling',imuSyncMs:5,trackingPoints:32,occlusion:'partial',lighting:'normal',smallDefectPx:8,depthUse:'relative',depthMode:'relative',nearDistance:1,nearError:.03,farDistance:5,farError:.15,robotSpeed:1,deceleration:1,margin:.2,baselineMm:75,focalPx:700,disparityError:.5,llmProfile:'flash',llmRuntime:'strata',strataQuant:'iq3',weightBits:4,contextTokens:8192,kvGB:2,runtimeGB:4,concurrency:1,hostReserveGB:8,ssdGB:128,speechDeadline:500,responseMetric:'firstAudio',vadMs:100,asrMs:100,ttsMs:80,toolMs:0,replyTokens:32,measuredTps:0,audioPlaybackMs:3000,audioEnv:'quiet',bargeIn:'yes',speechRuntime:'generic',sensorBus:'usb',timestampSync:'unknown'};
+const DEFAULTS={...AIOT.defaults,sensorFps:30,inferFps:15,speed:600,exposure:4,sensorWidth:1920,inputWidth:480,targetPixels:24,maxStep:24,maxBlur:3,minFeature:6,watts:15,streams:1,ram:16,latency:150,modelSize:'n',costPriority:'technical',maxCostBand:'any',costOverrides:{},modelBudgets:{},systemReserveGB:2,agentRateHz:.5,profileDevice:'nx',utilLimit:.8,strataResidentGB:48,strataGpuGB:10,llmPlacement:'local',llmMemoryPlace:'auto',decisionPlacement:'local',jevParamsB:3,jevBits:4,jevStateGB:1,jevBackend:'host',cameraPlatform:'fixed',lensClass:'wide',pixelMode:'measured',viewDistance:5,objectMeters:1,objectHeightMeters:1,scaleAnchor:'none',sensorHeight:720,targetHeight:24,objectWidth:80,objectHeight:120,fov:90,angularSpeed:0,stabilization:'none',shutter:'rolling',imuSyncMs:5,trackingPoints:32,occlusion:'partial',lighting:'normal',smallDefectPx:8,depthUse:'relative',depthMode:'relative',nearDistance:1,nearError:.03,farDistance:5,farError:.15,robotSpeed:1,deceleration:1,margin:.2,baselineMm:75,focalPx:700,disparityError:.5,llmProfile:'flash',llmRuntime:'strata',strataQuant:'iq3',weightBits:4,contextTokens:8192,kvGB:2,runtimeGB:4,concurrency:1,hostReserveGB:8,ssdGB:128,speechDeadline:500,responseMetric:'firstAudio',vadMs:100,asrMs:100,ttsMs:80,toolMs:0,replyTokens:32,measuredTps:0,audioPlaybackMs:3000,audioEnv:'quiet',bargeIn:'yes',speechRuntime:'generic',sensorBus:'usb',timestampSync:'unknown'};
 // One applicability policy shared by rendering and evaluation.
 function conditionContext(ids,params={}){
  const selected=new Set(ids),p={...DEFAULTS,...params},scenes=CATALOG.filter(c=>c.group==='scene'&&selected.has(c.id)),models=CATALOG.filter(c=>c.group==='model'&&selected.has(c.id)).map(c=>c.id);
- const vision=scenes.some(c=>!['voiceagent','ragagent','document'].includes(c.id))||selected.has('camera');
+ const vision=scenes.some(c=>!['voiceagent','ragagent','document','iotlocal','iotcv','iotcompanion'].includes(c.id))||selected.has('camera');
  const points=models.some(m=>['tapir','cotracker'].includes(m));
  const depth=scenes.some(c=>['depthscene','obstacle','uavmap','uavavoid','mobilerobot','vehicle'].includes(c.id))||selected.has('metric')||models.includes('stereo');
  const motion=points||selected.has('motion')||models.includes('stabilize')||(vision&&p.cameraPlatform!=='fixed')||scenes.some(c=>c.id==='gimbaltrack');
  const avoid=depth&&(p.depthUse==='avoid'||scenes.some(c=>['obstacle','uavavoid','mobilerobot'].includes(c.id)));
  const metric=depth&&(avoid||p.depthUse==='measure'||p.depthMode!=='relative');
- const localLLM=models.includes('llm')&&p.llmPlacement==='local',speech=scenes.some(c=>c.id==='voiceagent')||selected.has('audio'),inactive=new Set();
+ const localLLM=models.includes('llm')&&p.llmPlacement==='local',speech=scenes.some(c=>c.id==='voiceagent'||c.id==='iotlocal'||(c.id==='iotcompanion'&&p.companionBackend==='local'))||selected.has('audio'),inactive=new Set();
  const only=(active,keys)=>{if(!active)keys.split(' ').forEach(k=>inactive.add(k));};
  only(points,'targetPixels maxStep maxBlur minFeature trackingPoints');
  only(vision,'cameraPlatform lensClass pixelMode viewDistance sensorWidth sensorHeight fov inputWidth objectWidth objectHeight objectMeters objectHeightMeters sensorFps exposure lighting sensorBus');
@@ -147,19 +150,21 @@ function conditionContext(ids,params={}){
  only(localLLM,'llmProfile llmRuntime llmMemoryPlace strataQuant contextTokens weightBits kvGB runtimeGB hostReserveGB ssdGB strataResidentGB strataGpuGB');
  only(speech,'speechDeadline responseMetric audioEnv bargeIn speechRuntime vadMs asrMs ttsMs toolMs replyTokens measuredTps audioPlaybackMs');
  only(speech&&p.responseMetric==='fullReply','audioPlaybackMs replyTokens measuredTps');
- only(vision||models.some(m=>!['llm','jev','asr','tts','rag'].includes(m)),'inferFps');
+ only(vision||models.some(m=>!['llm','jev','asr','tts','rag','iotlink','mcuvision'].includes(m)),'inferFps');
+ if(!models.some(m=>!['iotlink','mcuvision'].includes(m))){for(const key of ['systemReserveGB','utilLimit','profileDevice','modelBudgets'])inactive.add(key);}
+ const aiot=AIOT.context(ids,p),activeAiot=AIOT.activeKeys(aiot,p);for(const key of Object.keys(AIOT.defaults))if(!activeAiot.includes(key))inactive.add(key);
  return {vision,points,depth,motion,avoid,metric,speech,inactive};
 }
-function evaluate(ids,params={}){
+function evaluateBase(ids,params={}){
  const selected=new Set(ids.filter(id=>CATALOG.some(c=>c.id===id))),p={...DEFAULTS,...params};
  const context=conditionContext([...selected],p);for(const key of context.inactive)p[key]=DEFAULTS[key];
  const scenes=CATALOG.filter(c=>c.group==='scene'&&selected.has(c.id));
  const models=CATALOG.filter(c=>c.group==='model'&&selected.has(c.id)).map(c=>c.id);
- const vision=scenes.some(c=>!['voiceagent','ragagent','document'].includes(c.id))||selected.has('camera');
+ const vision=scenes.some(c=>!['voiceagent','ragagent','document','iotlocal','iotcv','iotcompanion'].includes(c.id))||selected.has('camera');
  const pointWork=models.some(m=>['tapir','cotracker'].includes(m));
  const depthWork=scenes.some(c=>['depthscene','obstacle','uavmap','uavavoid','mobilerobot','vehicle'].includes(c.id))||selected.has('metric')||models.includes('stereo');
  const agentWork=models.includes('llm');const localAgent=agentWork&&p.llmPlacement==='local';const localDecision=models.includes('jev')&&p.decisionPlacement==='local';
- const speechWork=scenes.some(c=>c.id==='voiceagent')||selected.has('audio');
+ const speechWork=scenes.some(c=>c.id==='voiceagent'||c.id==='iotlocal'||(c.id==='iotcompanion'&&p.companionBackend==='local'))||selected.has('audio');
  const motionWork=pointWork||selected.has('motion')||models.includes('stabilize')||(vision&&p.cameraPlatform!=='fixed')||scenes.some(c=>c.id==='gimbaltrack');
  const issues=[], pending=[]; const issue=(code,text,extra={})=>issues.push({code,text,...extra});
  const owners={sensorFps:'camera',speed:'camera',exposure:'camera',sensorWidth:'camera',inputWidth:'camera',targetPixels:'camera',maxStep:'camera',maxBlur:'camera',minFeature:'camera',watts:'power',streams:'multi',ram:'memory',latency:'latency'};
@@ -184,11 +189,11 @@ function evaluate(ids,params={}){
  const enumOptions={costPriority:['technical','cost'],maxCostBand:['any','low','mid','high'],llmPlacement:['local','cloud'],llmMemoryPlace:['auto','host','accelerator'],decisionPlacement:['local','cloud'],jevBackend:['host','accelerator'],cameraPlatform:['fixed','uav','robot','vehicle'],lensClass:['wide','tele','stereo'],pixelMode:['measured','geometry'],scaleAnchor:['none','calibrated','gnss','groundtruth'],llmProfile:Object.keys(LLM_PROFILES),llmRuntime:['strata','llamacpp','openvino','qnn','tensorrt','vllm'],strataQuant:['iq2','iq3','q4'],depthUse:['relative','measure','avoid'],depthMode:['relative','metricmono','stereo','tof','fusion'],stabilization:['none','gimbal','imu','visual'],shutter:['rolling','global'],lighting:['normal','lowlight','reflective','occluded'],responseMetric:['firstAudio','fullReply'],audioEnv:['quiet','noisy','farfield'],bargeIn:['yes','no'],speechRuntime:['generic','riva','qnn'],sensorBus:['usb','csi','ethernet'],timestampSync:['unknown','hardware','software']};
  for(const [key,allowed] of Object.entries(enumOptions)){const active=['costPriority','maxCostBand'].includes(key)?true:['decisionPlacement','jevBackend'].includes(key)?models.includes('jev'):key==='llmPlacement'?agentWork:key.startsWith('llm')||key==='strataQuant'?localAgent:key.startsWith('depth')?depthWork:['responseMetric','audioEnv','bargeIn','speechRuntime'].includes(key)?speechWork:vision;if(active&&!allowed.includes(p[key]))issue('input',`${key} 選項無效。`);}
  const platforms=new Set(scenes.filter(c=>c.platform).map(c=>c.platform));if(platforms.size>1)issue('platformmix','不同載體的場景共用同一取像參數：請拆開無人機／機器人／車載評估。');
- const coverage={uavtrack:['tapir','cotracker'],uavmap:['slam'],uavavoid:['stereo'],mobilerobot:['slam'],vehicle:['yolo'],obstacle:['stereo','depth'],gimbaltrack:['tapir','cotracker'],voiceagent:['llm'],ragagent:['llm'],checkout:['yolo'],security:['yolo'],pose:['posemodel'],people:['yolo'],inspection:['yolo','sam'],document:['ocr','vlm'],points:['tapir','cotracker'],depthscene:['depth'],maskscene:['sam'],semantic:['vlm']};
+ const coverage={iotlocal:['llm'],iotcv:['mcuvision'],iotcompanion:['iotlink'],uavtrack:['tapir','cotracker'],uavmap:['slam'],uavavoid:['stereo'],mobilerobot:['slam'],vehicle:['yolo'],obstacle:['stereo','depth'],gimbaltrack:['tapir','cotracker'],voiceagent:['llm'],ragagent:['llm'],checkout:['yolo'],security:['yolo'],pose:['posemodel'],people:['yolo'],inspection:['yolo','sam'],document:['ocr','vlm'],points:['tapir','cotracker'],depthscene:['depth'],maskscene:['sam'],semantic:['vlm']};
  for(const scene of scenes)if(!coverage[scene.id].some(m=>models.includes(m)))issue('coverage',`${scene.name}缺少對應技術：請加入 ${coverage[scene.id].map(id=>CATALOG.find(c=>c.id===id).name).join(' 或 ')}。`);
  if(pointWork&&!Number.isInteger(p.trackingPoints))issue('input','追蹤點數須為整數。');
  if((agentWork||localDecision)&&(!Number.isInteger(p.concurrency)||(localAgent&&!Number.isInteger(p.contextTokens))))issue('input','並行數與 context tokens 須為整數。');
- if(scenes.some(c=>c.id==='voiceagent'))for(const id of ['asr','tts'])if(!models.includes(id))issue('speechtech',`語音 Agent 缺少 ${id.toUpperCase()} 技術，請加入或改非語音場景。`);
+ if(scenes.some(c=>c.id==='voiceagent'||c.id==='iotlocal'||(c.id==='iotcompanion'&&p.companionBackend==='local')))for(const id of ['asr','tts'])if(!models.includes(id))issue('speechtech',`語音 Agent 缺少 ${id.toUpperCase()} 技術，請加入或改非語音場景。`);
  if(scenes.some(c=>c.id==='ragagent')&&!models.includes('rag'))pending.push('RAG 場景尚未加入本地檢索／工具技術；目前只做 LLM 容量預檢。');
  if(motionWork&&['imu','visual'].includes(p.stabilization)&&!models.includes('stabilize'))issue('motiontech','選擇 IMU / 視覺補償時需加入運動補償技術卡。');
  if(!Number.isInteger(p.streams))issue('input','相機路數須為整數。');
@@ -347,4 +352,5 @@ function evaluate(ids,params={}){
  ];
  return {ids:[...selected],params:p,scenes,models,issues,pending,metrics,resources,requirements,depth,llm,speech,candidates,winner,stages,detectorOps,streams};
 }
+function evaluate(ids,params={}){return AIOT.assess(evaluateBase(ids,params));}
 if(typeof module!=='undefined')module.exports={conditionContext,CATALOG,DEVICES,DEFAULTS,PLATFORM_CASES,LLM_PROFILES,SCENE_CONSTRAINTS,RESOURCE_DEFAULTS,COST_BANDS,DEVICE_COST_DEFAULTS,evaluate};

@@ -11,6 +11,11 @@ def audit(value,path):
  elif isinstance(value,list):
   for i,item in enumerate(value):audit(item,f'{path}[{i}]')
 for path in (root/'src/locales').glob('*-en.json'):audit(json.loads(path.read_text()),str(path))
+data=json.loads((root/'src/aiot-data.json').read_text())
+for key,pair in data['copy'].items():audit(pair[1],'AIoT '+key)
+audit(data['cardsEn'],'AIoT cards')
+for name in ('accept','ops'):
+ for key,pair in data[name].items():audit(pair[1],'AIoT '+name+' '+key)
 soup=BeautifulSoup((root/'reference-en.html').read_text(),'html.parser')
 for node in soup(['script','style']):node.decompose()
 for node in soup.select('option[value=zh]'):
@@ -26,5 +31,5 @@ for a,b in zip(zh.iter(),en.iter()):
  for key,value in b.attrib.items():
   if key in ('name','value'):audit(value,'English draw.io '+key)
   else:assert value==a.get(key),(key,'Diagram geometry changed during translation')
-for path in [root.parent/'README.md',root/'README.md',root.parent/'docs/hosting.md']:audit(path.read_text(),str(path))
+for path in [root.parent/'README.md',root/'README.md',root.parent/'docs/hosting.md',root.parent/'docs/aiot-evidence.md']:audit(path.read_text(),str(path))
 print('PASS English dictionaries, all reference chapters/attributes, static diagram labels/geometry, and public documentation')

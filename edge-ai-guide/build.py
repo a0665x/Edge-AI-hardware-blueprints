@@ -3,8 +3,12 @@ import base64,json,sys
 root=Path(__file__).resolve().parent
 src=root/'src'
 workflow=src/'workflow'
-template=(src/'workbench.html').read_text()
+import html as html_escape
+aiot_data=json.loads((src/'aiot-data.json').read_text())
+aiot_options='<optgroup label="AIoT">'+''.join('<option value="'+c['id']+'">'+html_escape.escape(c['title'])+'</option>' for c in aiot_data['cases'])+'</optgroup>'
+template=(src/'workbench.html').read_text().replace('<!--AIOTOPTIONS-->',aiot_options)
 scene_files={'people':'people.webp','inspection':'vision-inspection.webp','document':'document.webp','points':'points.webp','gimbaltrack':'gimbal-tracking.webp','depthscene':'depthscene.webp','obstacle':'warehouse-depth.webp','maskscene':'maskscene.webp','semantic':'semantic.webp','checkout':'checkout.webp','security':'security.webp','pose':'pose.webp','voiceagent':'local-voice-agent.webp','ragagent':'ragagent.webp','uavtrack':'uavtrack.webp','uavmap':'uavmap.webp','uavavoid':'uavavoid.webp','mobilerobot':'mobilerobot.webp','vehicle':'vehicle.webp'}
+scene_files.update({id:id+'.webp' for id in ['iotlocal','iotcv','iotcompanion']})
 def uri(p):
  raw=p.read_bytes()
  mime='image/png' if raw.startswith(b'\x89PNG') else 'image/jpeg' if raw.startswith(b'\xff\xd8') else 'image/webp' if raw[8:12]==b'WEBP' else 'image/avif' if raw[8:12]==b'avif' else 'image/svg+xml'
@@ -18,7 +22,8 @@ for standalone in ([False,True] if '--standalone' in sys.argv else [False]):
  app=(src/'app.js').read_text().replace('/*IMAGES*/{}',json.dumps(images,ensure_ascii=False)).replace('/*DEVICEIMAGES*/{}',json.dumps(devices,ensure_ascii=False)).replace('/*DEVICECAPTIONS*/{}',json.dumps(captions,ensure_ascii=False))
  i18n=(src/'i18n.js').read_text()
  for marker,f in [('ENCARDS','locales/cards-en.json'),('REFLINKS','reference-links.json'),('TRANSLATIONS','locales/ui-en.json'),('FIELDNAMES','locales/fields-en.json'),('FIELDTIPS','locales/tips-en.json'),('SELECTNAMES','locales/selects-en.json'),('OPTIONNAMES','locales/options-en.json')]:i18n=i18n.replace('/*'+marker+'*/{}',(src/f).read_text())
- html=template.replace('/*STYLES*/',(src/'styles.css').read_text()+'\n'+(workflow/'workflow.css').read_text()).replace('/*ENGINE*/',(src/'engine.js').read_text()).replace('/*APP*/',app).replace('/*I18N*/',i18n).replace('/*WORKFLOWENGINE*/',(workflow/'workflow-engine.js').read_text()).replace('/*WORKFLOWUI*/',(workflow/'workflow-ui.js').read_text()).replace('/*WORKFLOWBRIDGE*/',(src/'workflow-bridge.js').read_text())
+ aiot=(src/'aiot.js').read_text().replace('/*AIOTDATA*/{}',(src/'aiot-data.json').read_text())
+ html=template.replace('/*AIOT*/',aiot).replace('/*STYLES*/',(src/'styles.css').read_text()+'\n'+(workflow/'workflow.css').read_text()).replace('/*ENGINE*/',(src/'engine.js').read_text()).replace('/*APP*/',app).replace('/*I18N*/',i18n).replace('/*WORKFLOWENGINE*/',(workflow/'workflow-engine.js').read_text()).replace('/*WORKFLOWUI*/',(workflow/'workflow-ui.js').read_text()).replace('/*WORKFLOWBRIDGE*/',(src/'workflow-bridge.js').read_text())
  name='standalone.html' if standalone else 'index.html'
  (root/name).write_text(html)
  print('Built',name,len(html.encode()),'bytes')

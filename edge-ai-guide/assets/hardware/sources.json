@@ -64,5 +64,17 @@
     "url": "https://cdn.lantronix.com/wp-content/uploads/img/IMG_0029_version_2_8550_cropped.png",
     "page": "https://www.lantronix.com/products/open-q-8550cs-som/",
     "caption": "Lantronix 官方 QCS8550 SoM 實物圖；16GB 配置按料號確認"
+  },
+  {
+    "id": "esp32s3",
+    "url": "https://raw.githubusercontent.com/espressif/esp-dev-kits/master/docs/_static/esp32-s3-devkitc-1/esp32-s3-devkitc-1-v1.1-isometric.png",
+    "page": "https://github.com/espressif/esp-dev-kits",
+    "caption": "Espressif ESP32-S3-DevKitC-1 official board photo; check module memory variant"
+  },
+  {
+    "id": "esp32p4",
+    "url": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32p4/_images/esp32-p4-function-ev-board-isometric_v1.5.2.png",
+    "page": "https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32p4/esp32-p4-function-ev-board/user_guide.html",
+    "caption": "Espressif ESP32-P4 Function EV Board official photo; check wireless companion and BOM"
   }
 ]

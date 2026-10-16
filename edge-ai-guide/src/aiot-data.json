@@ -1,0 +1,943 @@
+{
+  "copy": {
+    "ESP32-S3 / 本地 Qwen 語音終端": [
+      "ESP32-S3 / 本地 Qwen 語音終端",
+      "ESP32-S3 / local Qwen voice terminal"
+    ],
+    "ESP32 / ESPDet-Pico 單類偵測": [
+      "ESP32 / ESPDet-Pico 單類偵測",
+      "ESP32 / ESPDet-Pico single-class detection"
+    ],
+    "ESP32 / 色塊與幀差事件": [
+      "ESP32 / 色塊與幀差事件",
+      "ESP32 / color and frame-difference events"
+    ],
+    "ESP32-P4 / YOLO26 低頻快照": [
+      "ESP32-P4 / YOLO26 低頻快照",
+      "ESP32-P4 / YOLO26 low-rate snapshots"
+    ],
+    "Muse / 家庭螢幕伴侶": [
+      "Muse / 家庭螢幕伴侶",
+      "Muse / home display companion"
+    ],
+    "AIoT 實作參考；整合參數是規劃起點": [
+      "AIoT 實作參考；整合參數是規劃起點",
+      "AIoT implementation reference; integration values are planning assumptions"
+    ],
+    "LAN／服務往返 P95 ms": [
+      "LAN／服務往返 P95 ms",
+      "LAN / service round-trip P95 ms"
+    ],
+    "量測網路往返，不是 Wi-Fi PHY 速率。": [
+      "量測網路往返，不是 Wi-Fi PHY 速率。",
+      "Measure network round-trip, not Wi-Fi PHY rate."
+    ],
+    "端點音訊／buffer ms": [
+      "端點音訊／buffer ms",
+      "Endpoint audio / buffer ms"
+    ],
+    "包含端點編碼、緩衝與播放啟動。": [
+      "包含端點編碼、緩衝與播放啟動。",
+      "Include endpoint encoding, buffering and playback startup."
+    ],
+    "AIoT 回應期限 ms": [
+      "AIoT 回應期限 ms",
+      "AIoT response deadline ms"
+    ],
+    "從按鍵／句尾到文字或首音訊；另量主機及服務時間。": [
+      "從按鍵／句尾到文字或首音訊；另量主機及服務時間。",
+      "From button/utterance end to text or first audio; measure host/service time separately."
+    ],
+    "UVC 串流 Mbps": [
+      "UVC 串流 Mbps",
+      "UVC stream Mbps"
+    ],
+    "填實際壓縮後傳輸碼率；不是解析度換算或 USB 標稱速度。": [
+      "填實際壓縮後傳輸碼率；不是解析度換算或 USB 標稱速度。",
+      "Use measured compressed stream bitrate, not resolution or nominal USB speed."
+    ],
+    "MCU 相機寬 px": [
+      "MCU 相機寬 px",
+      "MCU camera width px"
+    ],
+    "感測器輸出寬；模型輸入大小由所選範例另外固定。": [
+      "感測器輸出寬；模型輸入大小由所選範例另外固定。",
+      "Sensor output width; model input is separately fixed by the chosen example."
+    ],
+    "MCU 相機高 px": [
+      "MCU 相機高 px",
+      "MCU camera height px"
+    ],
+    "實拍尺寸決定 buffer，不代表模型處理同樣解析度。": [
+      "實拍尺寸決定 buffer，不代表模型處理同樣解析度。",
+      "Captured dimensions determine buffers, not model input resolution."
+    ],
+    "MCU 實拍 FPS": [
+      "MCU 實拍 FPS",
+      "MCU captured FPS"
+    ],
+    "相機驅動可穩定取得的真實新影格。": [
+      "相機驅動可穩定取得的真實新影格。",
+      "Sustained fresh frames delivered by the camera driver."
+    ],
+    "MCU 推論更新 Hz": [
+      "MCU 推論更新 Hz",
+      "MCU inference update Hz"
+    ],
+    "要求完整管線更新率；公開範例只作保守起測，不保證產品達標。": [
+      "要求完整管線更新率；公開範例只作保守起測，不保證產品達標。",
+      "Required full-pipeline update rate; published examples are screening references, not guarantees."
+    ],
+    "並存影格 buffer 數": [
+      "並存影格 buffer 數",
+      "Concurrent frame buffers"
+    ],
+    "包含取像、處理與排隊同時存在的影格。": [
+      "包含取像、處理與排隊同時存在的影格。",
+      "Count simultaneous capture, processing and queued frames."
+    ],
+    "每像素 bytes": [
+      "每像素 bytes",
+      "Bytes per pixel"
+    ],
+    "灰階 1、RGB565 2、RGB888 3；MJPEG 解碼後仍可能需要 raw buffer。": [
+      "灰階 1、RGB565 2、RGB888 3；MJPEG 解碼後仍可能需要 raw buffer。",
+      "Grayscale 1, RGB565 2, RGB888 3; MJPEG decoding may still need raw buffers."
+    ],
+    "模型／CV 工作集 MB": [
+      "模型／CV 工作集 MB",
+      "Model / CV working set MB"
+    ],
+    "可編輯假設，填模型、tensor arena、前後處理高水位，不含另列相機 buffer。": [
+      "可編輯假設，填模型、tensor arena、前後處理高水位，不含另列相機 buffer。",
+      "Editable assumption: model, tensor arena and pre/postprocessing peak; camera buffers are separate."
+    ],
+    "音訊／顯示／網路 MB": [
+      "音訊／顯示／網路 MB",
+      "Audio / display / network MB"
+    ],
+    "同時運作的顯示、音訊與連線 buffer 規劃；以實測覆寫。": [
+      "同時運作的顯示、音訊與連線 buffer 規劃；以實測覆寫。",
+      "Concurrent display, audio and connection buffers; replace with measurements."
+    ],
+    "端點保留 PSRAM MB": [
+      "端點保留 PSRAM MB",
+      "Endpoint PSRAM reserve MB"
+    ],
+    "系統與碎片餘量；內部 SRAM／DMA 尚須分開驗證。": [
+      "系統與碎片餘量；內部 SRAM／DMA 尚須分開驗證。",
+      "System/fragmentation reserve; internal SRAM and DMA must be verified separately."
+    ],
+    "S3 實測完整管線 ms": [
+      "S3 實測完整管線 ms",
+      "S3 measured pipeline ms"
+    ],
+    "0 表示尚未測；只適用目前模型、相機尺寸、buffer 與精度。": [
+      "0 表示尚未測；只適用目前模型、相機尺寸、buffer 與精度。",
+      "0 means unmeasured; valid only for the current model, camera dimensions, buffers and precision."
+    ],
+    "P4 實測完整管線 ms": [
+      "P4 實測完整管線 ms",
+      "P4 measured pipeline ms"
+    ],
+    "0 表示尚未測；換模型或取像配置會清除此值。": [
+      "0 表示尚未測；換模型或取像配置會清除此值。",
+      "0 means unmeasured; changing model/acquisition configuration clears this value."
+    ],
+    "伴侶服務部署": [
+      "伴侶服務部署",
+      "Companion backend"
+    ],
+    "Muse 服務／官方 SDK": [
+      "Muse 服務／官方 SDK",
+      "Muse service / official SDK"
+    ],
+    "自建本地服務／非 Muse 離線版": [
+      "自建本地服務／非 Muse 離線版",
+      "Custom local backend / not offline Muse"
+    ],
+    "伴侶回覆形式": [
+      "伴侶回覆形式",
+      "Companion reply"
+    ],
+    "文字／表情": [
+      "文字／表情",
+      "Text / expression"
+    ],
+    "語音／額外 TTS 整合": [
+      "語音／額外 TTS 整合",
+      "Speech / added TTS integration"
+    ],
+    "端點資料連線": [
+      "端點資料連線",
+      "Endpoint data link"
+    ],
+    "Wi-Fi；BLE 僅配網": [
+      "Wi-Fi；BLE 僅配網",
+      "Wi-Fi; BLE provisioning only"
+    ],
+    "BLE 資料／需自訂 gateway": [
+      "BLE 資料／需自訂 gateway",
+      "BLE data / custom gateway required"
+    ],
+    "無連網／MCU 單機": [
+      "無連網／MCU 單機",
+      "No network / MCU only"
+    ],
+    "與主機失聯時": [
+      "與主機失聯時",
+      "When backend is unreachable"
+    ],
+    "提示離線／保留本地按鍵規則": [
+      "提示離線／保留本地按鍵規則",
+      "Show offline / keep local button rules"
+    ],
+    "仍需完整模型對話": [
+      "仍需完整模型對話",
+      "Full model conversation required"
+    ],
+    "P4 額外無線晶片": [
+      "P4 額外無線晶片",
+      "P4 wireless companion"
+    ],
+    "包含在 BOM": [
+      "包含在 BOM",
+      "Included in BOM"
+    ],
+    "不包含": [
+      "不包含",
+      "Not included"
+    ],
+    "MCU 視覺實作": [
+      "MCU 視覺實作",
+      "MCU vision implementation"
+    ],
+    "傳統 CV：色塊／閾值／幀差": [
+      "傳統 CV：色塊／閾值／幀差",
+      "Classical CV: blobs / threshold / frame difference"
+    ],
+    "ESPDet-Pico · 224 · 單類範例": [
+      "ESPDet-Pico · 224 · 單類範例",
+      "ESPDet-Pico · 224 · single-class example"
+    ],
+    "YOLO11n · INT8 · 320 範例": [
+      "YOLO11n · INT8 · 320 範例",
+      "YOLO11n · INT8 · 320 example"
+    ],
+    "YOLO26n · INT8 · 512 範例": [
+      "YOLO26n · INT8 · 512 範例",
+      "YOLO26n · INT8 · 512 example"
+    ],
+    "YOLOv8n · 自訂匯出待驗證": [
+      "YOLOv8n · 自訂匯出待驗證",
+      "YOLOv8n · custom export, unverified"
+    ],
+    "MCU 相機介面": [
+      "MCU 相機介面",
+      "MCU camera interface"
+    ],
+    "DVP 平行相機": [
+      "DVP 平行相機",
+      "DVP parallel camera"
+    ],
+    "MIPI CSI／P4": [
+      "MIPI CSI／P4",
+      "MIPI CSI / P4"
+    ],
+    "USB UVC／查驅動與頻寬": [
+      "USB UVC／查驅動與頻寬",
+      "USB UVC / driver and bandwidth checks"
+    ],
+    "UVC 傳輸模式": [
+      "UVC 傳輸模式",
+      "UVC transfer mode"
+    ],
+    "Bulk 傳輸": [
+      "Bulk 傳輸",
+      "Bulk transfer"
+    ],
+    "等時傳輸": [
+      "等時傳輸",
+      "Isochronous transfer"
+    ],
+    "AIoT 情境與部署": [
+      "AIoT 情境與部署",
+      "AIoT scenario and deployment"
+    ],
+    "端點相機與視覺限制": [
+      "端點相機與視覺限制",
+      "Endpoint camera and vision constraints"
+    ],
+    "端點並存記憶體": [
+      "端點並存記憶體",
+      "Concurrent endpoint memory"
+    ],
+    "各晶片的完整管線量測": [
+      "各晶片的完整管線量測",
+      "Full-pipeline measurements per chip"
+    ],
+    "這些數值是規劃假設，需以完整硬體與模型驗證。": [
+      "這些數值是規劃假設，需以完整硬體與模型驗證。",
+      "These values are planning assumptions; validate with the complete hardware and model."
+    ],
+    "ESP32 端點候選": [
+      "ESP32 端點候選",
+      "ESP32 endpoint candidates"
+    ],
+    "主機候選排名": [
+      "主機候選排名",
+      "Host candidate ranking"
+    ],
+    "端點候選排名": [
+      "端點候選排名",
+      "Endpoint candidate ranking"
+    ],
+    "部署分工與排除": [
+      "部署分工與排除",
+      "Deployment responsibilities and exclusions"
+    ],
+    "原創情境示意，非官方產品圖／效能證據": [
+      "原創情境示意，非官方產品圖／效能證據",
+      "Original scenario concept, not an official product photo or performance evidence"
+    ],
+    "主機可用期限": [
+      "主機可用期限",
+      "Available host/service deadline"
+    ],
+    "網路＋端點": [
+      "網路＋端點",
+      "Network + endpoint"
+    ],
+    "端點工作集": [
+      "端點工作集",
+      "Endpoint working set"
+    ],
+    "起測依據與實作案例": [
+      "起測依據與實作案例",
+      "Screening evidence and implementation examples"
+    ],
+    "裝置待確認": [
+      "裝置待確認",
+      "Device pending validation"
+    ],
+    "先選端點介面與部署路徑，再檢查記憶體、頻寬與更新率，最後評估主機。": [
+      "先選端點介面與部署路徑，再檢查記憶體、頻寬與更新率，最後評估主機。",
+      "Choose endpoint interfaces and deployment first; check memory, bandwidth and update rate before host selection."
+    ],
+    "外接主機容量不能補足端點 PSRAM。": [
+      "外接主機容量不能補足端點 PSRAM。",
+      "External host capacity cannot compensate for insufficient endpoint PSRAM."
+    ],
+    "內部 SRAM／DMA、Flash 模型分區與 OTA 空間需另驗證。": [
+      "內部 SRAM／DMA、Flash 模型分區與 OTA 空間需另驗證。",
+      "Verify internal SRAM/DMA, model flash partitions and OTA space separately."
+    ],
+    "沒有端點通過；請展開各候選查看具體排除原因。": [
+      "沒有端點通過；請展開各候選查看具體排除原因。",
+      "No endpoint passed; expand each candidate for its exact exclusion reasons."
+    ],
+    "AIoT 公開案例核對：2026-10-16": [
+      "AIoT 公開案例核對：2026-10-16",
+      "AIoT examples checked: 2026-10-16"
+    ],
+    "端點功耗上限 W": [
+      "端點功耗上限 W",
+      "Endpoint power limit W"
+    ],
+    "只算 ESP32 端點；本地主機功耗另行設定。": [
+      "只算 ESP32 端點；本地主機功耗另行設定。",
+      "ESP32 endpoint only; budget the local host separately."
+    ],
+    "端點實測功耗 W": [
+      "端點實測功耗 W",
+      "Measured endpoint power W"
+    ],
+    "0 表示未知；需包含無線、相機、顯示與音訊並存。": [
+      "0 表示未知；需包含無線、相機、顯示與音訊並存。",
+      "0 means unknown; include concurrent radio, camera, display and audio."
+    ],
+    "端點實測功耗超過設定上限。": [
+      "端點實測功耗超過設定上限。",
+      "Measured endpoint power exceeds the configured limit."
+    ],
+    "端點功耗尚未量測；不能宣稱已符合預算。": [
+      "端點功耗尚未量測；不能宣稱已符合預算。",
+      "Endpoint power is unmeasured; budget compliance is not established."
+    ],
+    "MCU 工作集 MB，與主機 GB 分開": [
+      "MCU 工作集 MB，與主機 GB 分開",
+      "MCU working set in MB, separate from host GB"
+    ],
+    "主機的語音前後處理加上網路／端點預算超過 AIoT 期限。": [
+      "主機的語音前後處理加上網路／端點預算超過 AIoT 期限。",
+      "Host speech stages plus network/endpoint budgets exceed the AIoT deadline."
+    ],
+    "此場景使用自建本地語音服務。": [
+      "此場景使用自建本地語音服務。",
+      "This scene uses a custom local voice backend."
+    ],
+    "Muse 與自建本地服務是替代路徑；請拆開評估或改為同一路徑。": [
+      "Muse 與自建本地服務是替代路徑；請拆開評估或改為同一路徑。",
+      "Muse and a custom local backend are alternative routes; evaluate separately or use the same route."
+    ],
+    "Muse SDK 尚未核對 P4 板卡支援；需移植驗證。": [
+      "Muse SDK 尚未核對 P4 板卡支援；需移植驗證。",
+      "Muse SDK P4 board support is unverified; porting validation is required."
+    ],
+    "此 MCU 案例是單相機端點；多路請拆成端點數與主機並發評估。": [
+      "此 MCU 案例是單相機端點；多路請拆成端點數與主機並發評估。",
+      "This MCU example is a single-camera endpoint; evaluate multiple nodes and host concurrency separately."
+    ],
+    "AIoT 端點控制需要 ESP32 連網與裝置控制技術卡。": [
+      "AIoT 端點控制需要 ESP32 連網與裝置控制技術卡。",
+      "AIoT endpoint control requires the ESP32 connectivity and control card."
+    ],
+    "所選取像尺寸不足以提供模型範例的原始輸入；上採樣不會補回細節。": [
+      "所選取像尺寸不足以提供模型範例的原始輸入；上採樣不會補回細節。",
+      "Captured dimensions are below the example model input; upsampling cannot recover detail."
+    ],
+    "P4 支援 MIPI CSI／ISP 與 USB HS；S3 走 DVP 或受限 UVC。": [
+      "P4 支援 MIPI CSI／ISP 與 USB HS；S3 走 DVP 或受限 UVC。",
+      "P4 supports MIPI CSI/ISP and USB HS; S3 uses DVP or constrained UVC."
+    ],
+    "ESP-DL / ESP-PPQ：固定量化圖與版本，並逐項查核算子。": [
+      "ESP-DL / ESP-PPQ：固定量化圖與版本，並逐項查核算子。",
+      "ESP-DL / ESP-PPQ: pin the quantized graph and versions, and inspect each operator."
+    ],
+    "S3：先測較小 PSRAM 配置，並提供內建 Wi-Fi／BLE。": [
+      "S3：先測較小 PSRAM 配置，並提供內建 Wi-Fi／BLE。",
+      "S3: start with the smaller PSRAM configuration and integrated Wi-Fi/BLE."
+    ],
+    "P4：較多 PSRAM 與 MIPI／USB HS；無線另加晶片。": [
+      "P4：較多 PSRAM 與 MIPI／USB HS；無線另加晶片。",
+      "P4: more PSRAM and MIPI/USB HS; wireless needs a separate chip."
+    ],
+    "所選 MIPI／完整 YOLO／較高更新率提高 P4 起測優先權。": [
+      "所選 MIPI／完整 YOLO／較高更新率提高 P4 起測優先權。",
+      "MIPI, full YOLO or a higher update target increases P4 screening priority."
+    ],
+    "端點範圍不需大型主機；品牌排除原因見下方完整流程。": [
+      "端點範圍不需大型主機；品牌排除原因見下方完整流程。",
+      "This endpoint scope needs no large host; see the complete flow below for brand exclusions."
+    ],
+    "MCU 管線時間超過指定延遲；請量測或放寬期限。": [
+      "MCU 管線時間超過指定延遲；請量測或放寬期限。",
+      "MCU pipeline time exceeds the selected latency; measure or relax the deadline."
+    ]
+  },
+  "scenes": [
+    {
+      "id": "iotlocal",
+      "group": "scene",
+      "name": "AIoT：ESP32 連接本地 LLM",
+      "short": "端點與主機分工 · 私有 LAN",
+      "icon": "iotlocal",
+      "models": [
+        "iotlink",
+        "llm",
+        "asr",
+        "tts"
+      ],
+      "story": "桌上語音終端以 ESP32-S3 收音、顯示與控制，透過家中 Wi-Fi 連接本地 Qwen 主機。",
+      "detail": "端點不承擔 Qwen 權重；主機計入 ASR、LLM、TTS 並存。藍牙配網與音訊傳輸分開；NX／AGX 是否足夠取決於模型、量化、context 與並發，沒有通用最低機型。",
+      "pipeline": [
+        "ESP32-S3",
+        "Wi-Fi LAN",
+        "ASR → Qwen → TTS",
+        "GPIO / display"
+      ],
+      "sceneDefaults": {
+        "llmProfile": "small8",
+        "llmRuntime": "tensorrt",
+        "llmPlacement": "local",
+        "weightBits": 4,
+        "kvGB": 0.5,
+        "runtimeGB": 2,
+        "hostReserveGB": 4,
+        "speechDeadline": 1000
+      },
+      "ref": "scenarios",
+      "source": "https://github.com/xinnan-tech/xiaozhi-esp32-server"
+    },
+    {
+      "id": "iotcv",
+      "group": "scene",
+      "name": "AIoT：ESP32 相機輕量視覺",
+      "short": "傳統 CV／小型偵測 · MCU",
+      "icon": "iotcv",
+      "models": [
+        "mcuvision"
+      ],
+      "story": "相機端辨識色塊、偵測畫面變動，或以 ESPDet-Pico 辨識單類物件後只送出事件。",
+      "detail": "ESP32-S3 走 DVP 或受限 USB UVC；P4 有 MIPI CSI／ISP 與 USB HS，但需外接無線晶片。YOLO11／YOLO26 可執行不等於 30 FPS；固定量化、輸入、資料集與 SDK 後量測。",
+      "pipeline": [
+        "Camera",
+        "ROI / ESP-DL",
+        "MCU inference",
+        "Event / GPIO"
+      ],
+      "sceneDefaults": {
+        "mcuVision": "pico",
+        "mcuFps": 5,
+        "mcuCamera": "dvp",
+        "iotTransport": "none"
+      },
+      "ref": "scenarios",
+      "source": "https://github.com/espressif/esp-detection"
+    },
+    {
+      "id": "iotcompanion",
+      "group": "scene",
+      "name": "AIoT：家庭互動伴侶",
+      "short": "螢幕／按鍵／感測 · 服務連接",
+      "icon": "iotcompanion",
+      "models": [
+        "iotlink"
+      ],
+      "story": "帶表情螢幕的小裝置透過按鍵說話，顯示回覆並控制家中設備；可比較 Muse 服務與自建本地主機。",
+      "detail": "Muse 官方 SDK 需要 app 配對與 SDK token；支援功能依板卡。預設回覆為文字，語音播報要另接 TTS。選本地服務是自建替代方案，不代表 Muse 服務能離線部署。",
+      "pipeline": [
+        "Button / microphone",
+        "Muse / local backend",
+        "Text / optional TTS",
+        "Display / actuator"
+      ],
+      "sceneDefaults": {
+        "companionBackend": "muse",
+        "iotReply": "text"
+      },
+      "ref": "scenarios",
+      "source": "https://github.com/facebookincubator/muse-gadget-sdk"
+    }
+  ],
+  "models": [
+    {
+      "id": "iotlink",
+      "group": "model",
+      "name": "ESP32 連網與裝置控制",
+      "short": "Wi-Fi／BLE／音訊／GPIO",
+      "icon": "chip",
+      "detail": "端點負責配網、音訊 buffer、顯示與控制；LLM 推論屬於指定的本地或服務主機。斷線重連、API 權限、OTA 與回滾需分別驗證。",
+      "ref": "algorithms",
+      "source": "https://github.com/78/xiaozhi-esp32"
+    },
+    {
+      "id": "mcuvision",
+      "group": "model",
+      "name": "MCU 傳統 CV / ESP-DL",
+      "short": "ROI／ESPDet-Pico／YOLO 範例",
+      "icon": "chip",
+      "detail": "傳統 CV 可先做灰階、閾值、色塊與幀差；深度偵測需 ESP-DL 相容量化圖與 SRAM／PSRAM／Flash 分別預算。完整 YOLOv8n 需自行匯出驗證，不套用 Pico 的 FPS。",
+      "ref": "algorithms",
+      "source": "https://github.com/espressif/esp-dl"
+    }
+  ],
+  "cases": [
+    {
+      "id": "iotlan",
+      "title": "ESP32-S3 / 本地 Qwen 語音終端",
+      "url": "https://github.com/xinnan-tech/xiaozhi-esp32-server",
+      "scene": "iotlocal",
+      "ids": [
+        "iotlocal",
+        "iotlink",
+        "llm",
+        "asr",
+        "tts",
+        "private",
+        "audio",
+        "localstack"
+      ],
+      "params": {
+        "llmProfile": "small8",
+        "llmRuntime": "tensorrt",
+        "llmPlacement": "local",
+        "weightBits": 4,
+        "kvGB": 0.5,
+        "runtimeGB": 2,
+        "hostReserveGB": 4,
+        "speechDeadline": 1000
+      },
+      "kind": "AIoT 實作參考；整合參數是規劃起點"
+    },
+    {
+      "id": "iotpico",
+      "title": "ESP32 / ESPDet-Pico 單類偵測",
+      "url": "https://github.com/espressif/esp-detection",
+      "scene": "iotcv",
+      "ids": [
+        "iotcv",
+        "mcuvision"
+      ],
+      "params": {
+        "mcuVision": "pico",
+        "mcuCamera": "dvp",
+        "mcuFps": 5,
+        "iotTransport": "none"
+      },
+      "kind": "AIoT 實作參考；整合參數是規劃起點"
+    },
+    {
+      "id": "iotclassical",
+      "title": "ESP32 / 色塊與幀差事件",
+      "url": "https://github.com/espressif/esp32-camera",
+      "scene": "iotcv",
+      "ids": [
+        "iotcv",
+        "mcuvision"
+      ],
+      "params": {
+        "mcuVision": "classical",
+        "mcuFps": 5,
+        "mcuModelMB": 0.5,
+        "iotTransport": "none"
+      },
+      "kind": "AIoT 實作參考；整合參數是規劃起點"
+    },
+    {
+      "id": "iotyolo26",
+      "title": "ESP32-P4 / YOLO26 低頻快照",
+      "url": "https://github.com/espressif/esp-dl/tree/master/examples/yolo26_detect",
+      "scene": "iotcv",
+      "ids": [
+        "iotcv",
+        "mcuvision"
+      ],
+      "params": {
+        "mcuVision": "yolo26",
+        "mcuCamera": "csi",
+        "mcuFps": 0.4,
+        "mcuModelMB": 10,
+        "iotTransport": "none",
+        "mcuWidth": 640,
+        "mcuHeight": 480
+      },
+      "kind": "AIoT 實作參考；整合參數是規劃起點"
+    },
+    {
+      "id": "iotmuse",
+      "title": "Muse / 家庭螢幕伴侶",
+      "url": "https://github.com/facebookincubator/muse-gadget-sdk",
+      "scene": "iotcompanion",
+      "ids": [
+        "iotcompanion",
+        "iotlink"
+      ],
+      "params": {
+        "companionBackend": "muse",
+        "iotReply": "text"
+      },
+      "kind": "AIoT 實作參考；整合參數是規劃起點"
+    }
+  ],
+  "accept": {
+    "iotlocal": [
+      "LAN 往返 P95、斷線重連、首音訊／完整回答、主機並存 RAM、麥克風與 AEC。",
+      "LAN round-trip P95, reconnects, first audio/full reply, concurrent host RAM, microphones and AEC."
+    ],
+    "iotcv": [
+      "相機驅動、輸入像素／類別、量化精度、完整管線 FPS、PSRAM 高水位與掉幀。",
+      "Camera driver, input pixels/classes, quantization accuracy, full-pipeline FPS, PSRAM high-water mark and frame drops."
+    ],
+    "iotcompanion": [
+      "配對、token、文字與語音功能範圍、資料去向、斷線降級、OTA 回滾與控制權限。",
+      "Pairing, token, text/voice scope, data destination, offline fallback, OTA rollback and command permissions."
+    ]
+  },
+  "ops": {
+    "iotlink": [
+      "固定韌體、服務協定、音訊 codec、API schema 與重連語意；Muse 查核 ESP-IDF 6.0.1 與板卡功能表。",
+      "Pin firmware, protocol, audio codec, API schema and reconnect semantics; check Muse ESP-IDF 6.0.1 and board features."
+    ],
+    "mcuvision": [
+      "檢查 ESP-DL 量化算子、靜態 shape、Resize／Conv／decode、NMS 或端到端輸出；Pico、YOLO11、YOLO26 不共用效能保證。",
+      "Inspect ESP-DL quantized operators, static shapes, Resize/Conv/decode and NMS or end-to-end outputs; Pico, YOLO11 and YOLO26 have distinct performance."
+    ]
+  },
+  "cardsEn": {
+    "iotlocal": [
+      "AIoT: ESP32 + local LLM",
+      "Endpoint / host split · private LAN",
+      "An ESP32-S3 voice terminal captures audio, displays replies and controls devices through a local Qwen server on the home LAN. Qwen weights reside on the host. Budget concurrent ASR, LLM and TTS there. Separate BLE provisioning from audio transport; NX/AGX suitability depends on model, precision, context and concurrency."
+    ],
+    "iotcv": [
+      "AIoT: ESP32 camera vision",
+      "Classical CV / tiny detection · MCU",
+      "The camera node segments colors, detects changes or uses ESPDet-Pico for single-class detection and sends compact events. S3 uses DVP or bandwidth-limited USB UVC. P4 adds MIPI CSI/ISP and USB HS, with a separate wireless chip. Running YOLO11/YOLO26 does not imply 30 FPS; pin quantization, input, dataset and SDK."
+    ],
+    "iotcompanion": [
+      "AIoT: home companion",
+      "Display / buttons / sensors · service",
+      "A small expressive display gadget accepts push-to-talk input, shows replies and controls home devices; compare Muse service with a self-hosted local backend. Muse requires app pairing and an SDK token; board features vary. Default replies are text; spoken output needs an added TTS integration. The local backend is a custom alternative, not an offline Muse deployment."
+    ],
+    "iotlink": [
+      "ESP32 connectivity and control",
+      "Wi-Fi / BLE / audio / GPIO",
+      "The endpoint handles provisioning, audio buffers, display and control. LLM inference belongs to the chosen local or service host. Test reconnects, API permissions, OTA and rollback."
+    ],
+    "mcuvision": [
+      "MCU classical CV / ESP-DL",
+      "ROI / ESPDet-Pico / YOLO examples",
+      "Start with grayscale, thresholds, color blobs or frame differences. Neural detection needs an ESP-DL-compatible quantized graph and separate SRAM, PSRAM and flash budgets. Custom YOLOv8n exports do not inherit Pico FPS."
+    ]
+  },
+  "uiNumbers": {
+    "iotRttMs": [
+      "LAN／服務往返 P95 ms",
+      "LAN / service round-trip P95 ms",
+      "量測網路往返，不是 Wi-Fi PHY 速率。",
+      "Measure network round-trip, not Wi-Fi PHY rate."
+    ],
+    "iotEndpointMs": [
+      "端點音訊／buffer ms",
+      "Endpoint audio / buffer ms",
+      "包含端點編碼、緩衝與播放啟動。",
+      "Include endpoint encoding, buffering and playback startup."
+    ],
+    "iotDeadlineMs": [
+      "AIoT 回應期限 ms",
+      "AIoT response deadline ms",
+      "從按鍵／句尾到文字或首音訊；另量主機及服務時間。",
+      "From button/utterance end to text or first audio; measure host/service time separately."
+    ],
+    "mcuMbps": [
+      "UVC 串流 Mbps",
+      "UVC stream Mbps",
+      "填實際壓縮後傳輸碼率；不是解析度換算或 USB 標稱速度。",
+      "Use measured compressed stream bitrate, not resolution or nominal USB speed."
+    ],
+    "mcuWidth": [
+      "MCU 相機寬 px",
+      "MCU camera width px",
+      "感測器輸出寬；模型輸入大小由所選範例另外固定。",
+      "Sensor output width; model input is separately fixed by the chosen example."
+    ],
+    "mcuHeight": [
+      "MCU 相機高 px",
+      "MCU camera height px",
+      "實拍尺寸決定 buffer，不代表模型處理同樣解析度。",
+      "Captured dimensions determine buffers, not model input resolution."
+    ],
+    "mcuSensorFps": [
+      "MCU 實拍 FPS",
+      "MCU captured FPS",
+      "相機驅動可穩定取得的真實新影格。",
+      "Sustained fresh frames delivered by the camera driver."
+    ],
+    "mcuFps": [
+      "MCU 推論更新 Hz",
+      "MCU inference update Hz",
+      "要求完整管線更新率；公開範例只作保守起測，不保證產品達標。",
+      "Required full-pipeline update rate; published examples are screening references, not guarantees."
+    ],
+    "mcuBuffers": [
+      "並存影格 buffer 數",
+      "Concurrent frame buffers",
+      "包含取像、處理與排隊同時存在的影格。",
+      "Count simultaneous capture, processing and queued frames."
+    ],
+    "mcuPixelBytes": [
+      "每像素 bytes",
+      "Bytes per pixel",
+      "灰階 1、RGB565 2、RGB888 3；MJPEG 解碼後仍可能需要 raw buffer。",
+      "Grayscale 1, RGB565 2, RGB888 3; MJPEG decoding may still need raw buffers."
+    ],
+    "mcuModelMB": [
+      "模型／CV 工作集 MB",
+      "Model / CV working set MB",
+      "可編輯假設，填模型、tensor arena、前後處理高水位，不含另列相機 buffer。",
+      "Editable assumption: model, tensor arena and pre/postprocessing peak; camera buffers are separate."
+    ],
+    "mcuUiMB": [
+      "音訊／顯示／網路 MB",
+      "Audio / display / network MB",
+      "同時運作的顯示、音訊與連線 buffer 規劃；以實測覆寫。",
+      "Concurrent display, audio and connection buffers; replace with measurements."
+    ],
+    "mcuReserveMB": [
+      "端點保留 PSRAM MB",
+      "Endpoint PSRAM reserve MB",
+      "系統與碎片餘量；內部 SRAM／DMA 尚須分開驗證。",
+      "System/fragmentation reserve; internal SRAM and DMA must be verified separately."
+    ],
+    "mcuMeasuredS3": [
+      "S3 實測完整管線 ms",
+      "S3 measured pipeline ms",
+      "0 表示尚未測；只適用目前模型、相機尺寸、buffer 與精度。",
+      "0 means unmeasured; valid only for the current model, camera dimensions, buffers and precision."
+    ],
+    "mcuMeasuredP4": [
+      "P4 實測完整管線 ms",
+      "P4 measured pipeline ms",
+      "0 表示尚未測；換模型或取像配置會清除此值。",
+      "0 means unmeasured; changing model/acquisition configuration clears this value."
+    ],
+    "iotMaxW": [
+      "端點功耗上限 W",
+      "Endpoint power limit W",
+      "只算 ESP32 端點；本地主機功耗另行設定。",
+      "ESP32 endpoint only; budget the local host separately."
+    ],
+    "iotMeasuredW": [
+      "端點實測功耗 W",
+      "Measured endpoint power W",
+      "0 表示未知；需包含無線、相機、顯示與音訊並存。",
+      "0 means unknown; include concurrent radio, camera, display and audio."
+    ]
+  },
+  "uiSelects": {
+    "companionBackend": [
+      "伴侶服務部署",
+      "Companion backend",
+      [
+        [
+          "muse",
+          "Muse 服務／官方 SDK",
+          "Muse service / official SDK"
+        ],
+        [
+          "local",
+          "自建本地服務／非 Muse 離線版",
+          "Custom local backend / not offline Muse"
+        ]
+      ]
+    ],
+    "iotReply": [
+      "伴侶回覆形式",
+      "Companion reply",
+      [
+        [
+          "text",
+          "文字／表情",
+          "Text / expression"
+        ],
+        [
+          "speech",
+          "語音／額外 TTS 整合",
+          "Speech / added TTS integration"
+        ]
+      ]
+    ],
+    "iotTransport": [
+      "端點資料連線",
+      "Endpoint data link",
+      [
+        [
+          "wifi",
+          "Wi-Fi；BLE 僅配網",
+          "Wi-Fi; BLE provisioning only"
+        ],
+        [
+          "ble",
+          "BLE 資料／需自訂 gateway",
+          "BLE data / custom gateway required"
+        ],
+        [
+          "none",
+          "無連網／MCU 單機",
+          "No network / MCU only"
+        ]
+      ]
+    ],
+    "iotOffline": [
+      "與主機失聯時",
+      "When backend is unreachable",
+      [
+        [
+          "fallback",
+          "提示離線／保留本地按鍵規則",
+          "Show offline / keep local button rules"
+        ],
+        [
+          "full",
+          "仍需完整模型對話",
+          "Full model conversation required"
+        ]
+      ]
+    ],
+    "iotRadio": [
+      "P4 額外無線晶片",
+      "P4 wireless companion",
+      [
+        [
+          "yes",
+          "包含在 BOM",
+          "Included in BOM"
+        ],
+        [
+          "no",
+          "不包含",
+          "Not included"
+        ]
+      ]
+    ],
+    "mcuVision": [
+      "MCU 視覺實作",
+      "MCU vision implementation",
+      [
+        [
+          "classical",
+          "傳統 CV：色塊／閾值／幀差",
+          "Classical CV: blobs / threshold / frame difference"
+        ],
+        [
+          "pico",
+          "ESPDet-Pico · 224 · 單類範例",
+          "ESPDet-Pico · 224 · single-class example"
+        ],
+        [
+          "yolo11",
+          "YOLO11n · INT8 · 320 範例",
+          "YOLO11n · INT8 · 320 example"
+        ],
+        [
+          "yolo26",
+          "YOLO26n · INT8 · 512 範例",
+          "YOLO26n · INT8 · 512 example"
+        ],
+        [
+          "yolo8",
+          "YOLOv8n · 自訂匯出待驗證",
+          "YOLOv8n · custom export, unverified"
+        ]
+      ]
+    ],
+    "mcuCamera": [
+      "MCU 相機介面",
+      "MCU camera interface",
+      [
+        [
+          "dvp",
+          "DVP 平行相機",
+          "DVP parallel camera"
+        ],
+        [
+          "csi",
+          "MIPI CSI／P4",
+          "MIPI CSI / P4"
+        ],
+        [
+          "usb",
+          "USB UVC／查驅動與頻寬",
+          "USB UVC / driver and bandwidth checks"
+        ]
+      ]
+    ],
+    "mcuUsbMode": [
+      "UVC 傳輸模式",
+      "UVC transfer mode",
+      [
+        [
+          "bulk",
+          "Bulk 傳輸",
+          "Bulk transfer"
+        ],
+        [
+          "iso",
+          "等時傳輸",
+          "Isochronous transfer"
+        ]
+      ]
+    ]
+  }
+}

@@ -1312,5 +1312,143 @@
       "why": "延伸到這張卡片會影響的實體條件／部署資源。",
       "whyEn": "Follow the physical or deployment resources affected by this card."
     }
+  ],
+  "iotlocal": [
+    {
+      "chapter": 3,
+      "anchor": "guide-iotlocal",
+      "zh": "AIoT：ESP32 連接本地 LLM：情境與切分",
+      "en": "AIoT: ESP32 + local LLM: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-iotlink",
+      "zh": "ESP32 連網與裝置控制：技術路徑",
+      "en": "ESP32 connectivity and control: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 6,
+      "anchor": "guide-llm",
+      "zh": "本地 LLM / Strata：技術路徑",
+      "en": "LLM / Strata: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-iotlocal",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "iotcv": [
+    {
+      "chapter": 3,
+      "anchor": "guide-iotcv",
+      "zh": "AIoT：ESP32 相機輕量視覺：情境與切分",
+      "en": "AIoT: ESP32 camera vision: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-mcuvision",
+      "zh": "MCU 傳統 CV / ESP-DL：技術路徑",
+      "en": "MCU classical CV / ESP-DL: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-iotcv",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "iotcompanion": [
+    {
+      "chapter": 3,
+      "anchor": "guide-iotcompanion",
+      "zh": "AIoT：家庭互動伴侶：情境與切分",
+      "en": "AIoT: home companion: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 5,
+      "anchor": "guide-iotlink",
+      "zh": "ESP32 連網與裝置控制：技術路徑",
+      "en": "ESP32 connectivity and control: algorithm path",
+      "why": "這個場景實際帶入的技術，不是泛用演算法清單。",
+      "whyEn": "An algorithm actually selected by this scene."
+    },
+    {
+      "chapter": 11,
+      "anchor": "accept-iotcompanion",
+      "zh": "此情境的 PoC 指標",
+      "en": "Scenario-specific PoC metrics",
+      "why": "讓選型回到可以真機量測的結果。",
+      "whyEn": "Tie selection to observable hardware acceptance."
+    }
+  ],
+  "iotlink": [
+    {
+      "chapter": 5,
+      "anchor": "guide-iotlink",
+      "zh": "ESP32 連網與裝置控制：情境與切分",
+      "en": "ESP32 connectivity and control: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-iotlink",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "aiot-deployment",
+      "zh": "AIoT：端點與服務分工",
+      "en": "AIoT: endpoint and backend budgets",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
+  ],
+  "mcuvision": [
+    {
+      "chapter": 5,
+      "anchor": "guide-mcuvision",
+      "zh": "MCU 傳統 CV / ESP-DL：情境與切分",
+      "en": "MCU classical CV / ESP-DL: scope and decisions",
+      "why": "直接對應這張卡片的用途、失效與驗收。",
+      "whyEn": "The scope, failure modes and acceptance for this exact card."
+    },
+    {
+      "chapter": 8,
+      "anchor": "ops-mcuvision",
+      "zh": "實際圖算子與版本",
+      "en": "Graph operators and versions",
+      "why": "由模型圖與 SDK 查核，不能以品牌支援 AI 代替。",
+      "whyEn": "Inspect the exact graph/backend; a brand-level AI claim is insufficient."
+    },
+    {
+      "chapter": 9,
+      "anchor": "aiot-deployment",
+      "zh": "AIoT：端點與服務分工",
+      "en": "AIoT: endpoint and backend budgets",
+      "why": "延伸到這張卡片會影響的實體條件／部署資源。",
+      "whyEn": "Follow the physical or deployment resources affected by this card."
+    }
   ]
 }

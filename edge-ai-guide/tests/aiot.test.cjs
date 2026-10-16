@@ -1,0 +1,27 @@
+const assert=require('node:assert/strict');
+const {evaluate,PLATFORM_CASES,DEFAULTS}=require('../src/engine.js');
+let checks=0;function test(name,fn){fn();checks++;console.log('PASS '+name);}
+const run=(id,overrides={},extra=[])=>{const c=PLATFORM_CASES.find(c=>c.id===id);return evaluate([...c.ids,...extra],{...DEFAULTS,...c.params,...overrides});};
+test('local voice ranks a host and a distinct ESP32 endpoint',()=>{const e=run('iotlan');assert.equal(e.winner.id,'nx');assert.equal(e.aiot.endpoint.id,'esp32s3');assert(e.resources.tasks.some(t=>t.id==='asr'));assert(!e.resources.tasks.some(t=>t.id==='iotlink'));assert(e.speech);});
+test('larger simultaneous local model load changes host feasibility',()=>{const small=run('iotlan'),large=run('iotlan',{kvGB:12,runtimeGB:8});assert.equal(small.winner.id,'nx');assert(large.candidates.find(d=>d.id==='nx').blocked.length);assert.notEqual(large.winner?.id,'nx');assert.equal(large.aiot.workingMB,small.aiot.workingMB);});
+test('Pico defaults do not invent a GPU server',()=>{const e=run('iotpico');assert.equal(e.winner.id,'esp32s3');assert(e.aiot.standalone);assert(e.resources.totalGB<.01);assert(e.candidates.find(d=>d.id==='agx').blocked.length);});
+test('MIPI CSI eliminates S3 and retains P4',()=>{const e=run('iotpico',{mcuCamera:'csi'});assert.equal(e.winner.id,'esp32p4');assert(e.candidates.find(d=>d.id==='esp32s3').blocked.some(x=>x.includes('MIPI')));});
+test('P4 wireless companion is required only for a wireless route',()=>{assert.equal(run('iotpico',{mcuCamera:'csi',iotRadio:'no',iotTransport:'none'}).winner.id,'esp32p4');assert.equal(run('iotpico',{mcuCamera:'csi',iotRadio:'no',iotTransport:'wifi'}).winner,null);});
+test('USB limits distinguish bulk and isochronous',()=>{assert.equal(run('iotpico',{mcuCamera:'usb',mcuMbps:5,mcuUsbMode:'bulk'}).winner.id,'esp32s3');assert.equal(run('iotpico',{mcuCamera:'usb',mcuMbps:5,mcuUsbMode:'iso'}).winner.id,'esp32p4');});
+test('raw frame buffers and model memory are additive',()=>{const e=run('iotpico',{mcuWidth:1920,mcuHeight:1080,mcuBuffers:2,mcuPixelBytes:3});assert.equal(e.winner.id,'esp32p4');assert(e.aiot.frameMB>11);});
+test('oversized endpoint cannot borrow host RAM',()=>{const e=run('iotlan',{mcuUiMB:40});assert.equal(e.winner,null);assert.equal(e.aiot.endpoint,null);});
+test('Pico evidence changes endpoint screening without claiming guaranteed FPS',()=>{assert.equal(run('iotpico',{mcuFps:10}).winner.id,'esp32p4');assert.equal(run('iotpico',{mcuFps:10,mcuMeasuredS3:80}).aiot.endpoints.find(d=>d.id==='esp32s3').blocked.length,0);});
+test('captured FPS is an independent ceiling',()=>{const e=run('iotpico',{mcuFps:20,mcuSensorFps:15,mcuMeasuredS3:10});assert.equal(e.winner,null);assert(e.issues.some(x=>x.fields?.includes('mcuSensorFps')));});
+test('YOLO26 snapshot differs from video rate',()=>{assert.equal(run('iotyolo26').winner.id,'esp32p4');assert.equal(run('iotyolo26',{mcuFps:10}).winner,null);});
+test('model-specific measured timing does not transfer across devices',()=>{const e=run('iotpico',{mcuCamera:'csi',mcuFps:20,mcuSensorFps:30,mcuMeasuredS3:5});assert.equal(e.winner,null);});
+test('Muse remains service-backed with an explicit offline conflict',()=>{assert.equal(run('iotmuse').winner.id,'esp32s3');const e=run('iotmuse',{},['private']);assert.equal(e.winner,null);assert(e.issues.some(x=>x.fields?.includes('companionBackend')));});
+test('full conversations cannot silently survive a lost backend',()=>assert.equal(run('iotlan',{iotOffline:'full'}).winner,null));
+test('BLE provisioning is not a verified BLE audio pipeline',()=>assert.equal(run('iotlan',{iotTransport:'ble'}).winner,null));
+test('network plus endpoint and speech stages share deadline',()=>{const e=run('iotlan',{iotDeadlineMs:300,iotRttMs:100});assert.equal(e.winner,null);assert(e.issues.some(x=>x.fields?.includes('iotDeadlineMs')));});
+test('measured endpoint power cannot exceed budget',()=>assert.equal(run('iotpico',{iotMaxW:2,iotMeasuredW:3}).winner,null));
+test('inactive AIoT inputs do not affect other scenarios',()=>{const e=evaluate(['people','yolo'],{mcuWidth:NaN,iotDeadlineMs:-1});assert(e.winner);assert(!e.aiot);});
+test('fractional buffers are rejected',()=>assert.equal(run('iotpico',{mcuBuffers:1.5}).winner,null));
+test('Muse-to-local requires explicit local model techniques',()=>{const e=run('iotmuse',{companionBackend:'local'});assert.equal(e.winner,null);assert(e.issues.length);});
+test('standalone trace has no phantom GB-scale host budget',()=>{const e=run('iotpico');assert(!e.requirements.some(r=>r.text.includes('2.0 GB')));assert(evaluate(['iotcv','mcuvision'],{inferFps:-1,systemReserveGB:NaN,profileDevice:'old'}).winner);});
+test('explicit latency can exclude a slower endpoint',()=>{assert.equal(run('iotpico',{latency:100},['latency']).winner.id,'esp32p4');});
+console.log(checks+' AIoT rule tests passed');

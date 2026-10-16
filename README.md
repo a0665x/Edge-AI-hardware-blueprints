@@ -6,13 +6,15 @@ A visual planning workbench for startups and teams exploring a new AI product. T
 
 ## From an idea to a delivery plan
 
-1. **Define the application.** Combine scenario, technique and requirement cards: vision, tracking, depth, robotics, speech and local language models.
+1. **Define the application.** Combine scenario, technique and requirement cards: vision, tracking, depth, robotics, speech, local language models and AIoT endpoints.
    Conditions follow the selected scenario and deployment path; advanced settings expand on demand. Inapplicable values do not affect the evaluation.
 2. **Explore hardware fit.** Review camera constraints, runtime compatibility, concurrent memory/compute, power and procurement bands. Inspect why each device is shortlisted or excluded.
 3. **Plan product delivery.** Carry the assessment into a hardware/software workflow, identify missing or unnecessary functions, and assign internal or external ownership.
 4. **Make responsibilities explicit.** Follow engineering, validation, production and operational feedback through a RACI table: Responsible, Accountable, Consulted and Informed.
 
 The interface supports **English and Traditional Chinese**, contextual explanations, interactive workflow states, and JSON, CSV, SVG and draw.io exports.
+
+AIoT examples cover **ESP32 + a local Qwen host**, **MCU camera vision**, and **a connected home companion**. Endpoint PSRAM/power and host RAM/compute stay separate; camera interfaces and model-specific evidence affect the shortlist. See the [implementation evidence and limits](docs/aiot-evidence.md).
 
 ## Screenshots
 
@@ -25,6 +27,13 @@ Full-page English captures. Click an image to view it at its original resolution
 ### Product development and RACI
 
 [![Product development workflow and RACI — full page](docs/screenshots/delivery-en.png)](docs/screenshots/delivery-en.png)
+
+<details>
+<summary>AIoT endpoint and device selection</summary>
+
+[![AIoT MCU vision planning — full page](docs/screenshots/aiot-en.png)](docs/screenshots/aiot-en.png)
+
+</details>
 
 ## Run locally
 
@@ -44,9 +53,11 @@ Requires Python 3.10+ and Node.js 18+ for the checks.
 python3 -m pip install -r requirements.txt
 python3 edge-ai-guide/build.py
 node edge-ai-guide/tests/engine.test.cjs
+node edge-ai-guide/tests/aiot.test.cjs
 node edge-ai-guide/tests/ui.test.cjs
 node edge-ai-guide/tests/workflow.test.cjs
 python3 edge-ai-guide/tests/reference.test.py
+python3 edge-ai-guide/tests/locale_static.test.py
 ```
 
 `edge-ai-guide/src/` contains the selection UI, evaluation rules, bilingual content and product workflow. `build.py` generates the static HTML; `reference_view.py` builds the compact 13-chapter guide. To generate an optional offline single-file bundle, run `python3 edge-ai-guide/build.py --standalone`.
